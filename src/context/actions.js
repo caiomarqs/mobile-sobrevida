@@ -1,0 +1,7 @@
+const AUTH_ACTIONS = {
+    LOGIN: "LOGIN",
+    LOGOUT: "LOGOUT",
+    ISLOGGED: "ISLOGGED"
+}
+
+export { AUTH_ACTIONS } 
