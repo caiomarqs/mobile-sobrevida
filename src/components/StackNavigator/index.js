@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { createStackNavigator, TransitionSpecs, HeaderStyleInterpolators } from '@react-navigation/stack'
+import { TouchableOpacity } from 'react-native'
 
 import { Colors, Fonts } from '../../styles'
+import { LeftArrow } from '../Icons'
+import { TextSubTitle2 } from '../Texts'
 
 const Stack = createStackNavigator()
 
@@ -29,7 +32,7 @@ const HorizontalTransition = {
                         scale: next
                             ? next.progress.interpolate({
                                 inputRange: [0, 1],
-                                outputRange: [1, .925], //Zoom de saida da tela anterior
+                                outputRange: [1, .9], //Zoom de saida da tela anterior
                             })
                             : 1,
                     },
@@ -45,10 +48,11 @@ const HorizontalTransition = {
     },
 }
 
+
 /**
- * Esse *StackNavigator* tem as configurações de navegação da aplcaicação, 
+ * Esse *StackNavigator* tem as configurações de navegação da aplcaicação,
  * por isso exporta o *Stack* junto como o Navigator
- * @param {*} props 
+ * @param {*} props
  */
 const StackNavigator = (props) => {
 
@@ -63,11 +67,12 @@ const StackNavigator = (props) => {
                 headerTintColor: Colors.preto000,
                 headerTitleStyle: {
                     ...Fonts.sub2,
-                    alignSelf: 'flex-end'
+                    alignSelf: 'flex-end',
                 },
                 cardOverlayEnabled: true,
                 gestureEnabled: true,
-                ...HorizontalTransition,
+                headerBackImage: () => (<LeftArrow />),
+                ...HorizontalTransition
             }}
             {...props}
         >
