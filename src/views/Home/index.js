@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { Button, SafeAreaView, Text } from 'react-native'
-import { AuthContext, AUTH_ACTIONS } from '../context'
+import { AuthContext, AUTH_ACTIONS } from '../../context'
 
 const Home = () => {
 
