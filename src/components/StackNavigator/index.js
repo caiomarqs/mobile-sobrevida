@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { createStackNavigator, TransitionSpecs, HeaderStyleInterpolators } from '@react-navigation/stack'
 
-import { Colors, Fonts } from '../../styles'
+import { Colors, Fonts, Base } from '../../styles'
 import { LeftArrow } from '../Icons'
 
 const Stack = createStackNavigator()
@@ -46,6 +46,26 @@ const HorizontalTransition = {
     },
 }
 
+const whiteHeader = {
+    headerBackImage: () => (<LeftArrow fill={Base.whiteNavigator.contentColor} />),
+    headerStyle: {
+        backgroundColor: Base.whiteNavigator.backgroundColor,
+        elevation: 0, // remove shadow on Android
+        shadowOpacity: 0, //remove on IOS
+    },
+    headerTintColor: Base.whiteNavigator.contentColor,
+}
+
+const colorHeader = {
+    headerBackImage: () => (<LeftArrow fill={Base.colorNavigator.contentColor} />),
+    headerStyle: {
+        backgroundColor: Base.colorNavigator.backgroundColor,
+        elevation: 0,
+        shadowOpacity: 0,
+    },
+    headerTintColor: Base.colorNavigator.contentColor,
+}
+
 
 /**
  * Esse *StackNavigator* tem as configurações de navegação da aplcaicação,
@@ -54,23 +74,16 @@ const HorizontalTransition = {
  */
 const StackNavigator = (props) => {
 
-
     return (
         <Stack.Navigator
             screenOptions={{
-                headerStyle: {
-                    backgroundColor: Colors.branco000,
-                    elevation: 0, // remove shadow on Android
-                    shadowOpacity: 0, //remove on IOS
-                },
-                headerTintColor: Colors.preto000,
                 headerTitleStyle: {
                     ...Fonts.sub2,
                     alignSelf: 'flex-end',
                 },
                 cardOverlayEnabled: true,
                 gestureEnabled: true,
-                headerBackImage: () => (<LeftArrow />),
+                ...whiteHeader,
                 ...HorizontalTransition
             }}
             {...props}
@@ -80,4 +93,4 @@ const StackNavigator = (props) => {
     )
 }
 
-export { StackNavigator, Stack }
+export { StackNavigator, Stack, whiteHeader, colorHeader }

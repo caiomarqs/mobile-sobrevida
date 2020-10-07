@@ -1,2 +1,2 @@
 export * from './AuthContex'
-export * from './GlobalStylesContext'
+export * from './actions'

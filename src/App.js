@@ -10,10 +10,8 @@ const App = () => {
   return (
     <NavigationContainer>
       <AuthProvider>
-        <GlobalStylesProvider>
-          <SheelRoutes />
-          <PageRoutes />
-        </GlobalStylesProvider>
+        <SheelRoutes />
+        <PageRoutes />
       </AuthProvider>
     </NavigationContainer>
   )
