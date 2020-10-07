@@ -1,10 +1,9 @@
 import React, { useContext } from 'react'
-import { createStackNavigator } from '@react-navigation/stack'
 
 import { AuthContext } from '../context'
 import { Home } from '../views'
+import { StackNavigator, Stack } from '../components'
 
-const Stack = createStackNavigator()
 
 const PageRoutes = () => {
 
@@ -15,9 +14,9 @@ const PageRoutes = () => {
             {
                 authState.isAuth
                 &&
-                <Stack.Navigator initialRouteName="Home">
+                <StackNavigator initialRouteName="Home">
                     <Stack.Screen name="Home" component={Home} />
-                </Stack.Navigator>
+                </StackNavigator>
             }
         </>
     )
