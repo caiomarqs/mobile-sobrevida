@@ -1,7 +1,8 @@
 import React, { useContext } from 'react'
-import { Button, SafeAreaView, Text } from 'react-native'
+import { Image, SafeAreaView, View } from 'react-native'
 
 import { AuthContext, AUTH_ACTIONS } from '../../context'
+import { TextSubTitle2 } from '../../components'
 import { styles } from './styles'
 
 
@@ -18,10 +19,20 @@ const Login = (props) => {
     }
 
     return (
-        <SafeAreaView>
-            <Text style={styles.text}>Login</Text>
-            <Button title="cadastro" onPress={() => handleCadastro()} />
-            <Button title="login" onPress={() => handleLogin()} />
+        <SafeAreaView style={styles.container}>
+            
+            <View style={styles.brandingContainer}>
+                <TextSubTitle2 style={styles.title}>Bem vindo de volta!</TextSubTitle2>
+                <Image
+                    style={styles.brandingImg}
+                    source={require('../../assets/img/loginCoveImage.png')}
+                />
+            </View>
+            
+            <View style={styles.principalContainer}>
+
+            </View>
+
         </SafeAreaView>
     )
 }

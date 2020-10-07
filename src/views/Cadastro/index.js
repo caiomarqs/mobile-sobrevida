@@ -24,9 +24,6 @@ const Cadastro = () => {
                 barStyle='dark-content'
                 hasHeader={true}
             />
-            <TouchableOpacity onPress={() => setNavigationStyle({ backgroundColor: Colors.branco000 })}>
-                <TextSubTitle2>Teste</TextSubTitle2>
-            </TouchableOpacity>
             <TextSubTitle2 style={styles.title}>Faça seu cadastro para se declarar doador</TextSubTitle2>
         </SafeAreaView>
     )
