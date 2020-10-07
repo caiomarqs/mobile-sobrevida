@@ -1,10 +1,8 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { createStackNavigator, TransitionSpecs, HeaderStyleInterpolators } from '@react-navigation/stack'
-import { TouchableOpacity } from 'react-native'
 
 import { Colors, Fonts } from '../../styles'
 import { LeftArrow } from '../Icons'
-import { TextSubTitle2 } from '../Texts'
 
 const Stack = createStackNavigator()
 
@@ -56,11 +54,12 @@ const HorizontalTransition = {
  */
 const StackNavigator = (props) => {
 
+
     return (
         <Stack.Navigator
             screenOptions={{
                 headerStyle: {
-                    backgroundColor: 'transparent',
+                    backgroundColor: Colors.branco000,
                     elevation: 0, // remove shadow on Android
                     shadowOpacity: 0, //remove on IOS
                 },

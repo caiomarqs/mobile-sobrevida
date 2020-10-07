@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native'
-import { ClipPath } from 'react-native-svg'
 
 import { Base, Colors, Paddings } from '../../styles'
 

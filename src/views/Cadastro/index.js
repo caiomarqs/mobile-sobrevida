@@ -1,14 +1,33 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { SafeAreaView, Text } from 'react-native'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 
-import { StatusBarColor } from '../../components'
+import { StatusBarColor, TextSubTitle2 } from '../../components'
+
 import { Colors } from '../../styles'
 
+import { styles } from './styles'
+
 const Cadastro = () => {
+
+
+
+    useEffect(() => {
+        // console.log(navigationStyle)
+
+    })
+
     return (
-        <SafeAreaView>
-            <StatusBarColor backgroundColor={Colors.branco000} barStyle='dark-content' hasHeader={true}/>
-            <Text>Cadastro</Text>
+        <SafeAreaView style={styles.container}>
+            <StatusBarColor
+                backgroundColor={Colors.branco000}
+                barStyle='dark-content'
+                hasHeader={true}
+            />
+            <TouchableOpacity onPress={() => setNavigationStyle({ backgroundColor: Colors.branco000 })}>
+                <TextSubTitle2>Teste</TextSubTitle2>
+            </TouchableOpacity>
+            <TextSubTitle2 style={styles.title}>Faça seu cadastro para se declarar doador</TextSubTitle2>
         </SafeAreaView>
     )
 }
