@@ -1,6 +1,5 @@
 import React from 'react'
 import { Text } from 'react-native'
-import { exp } from 'react-native/Libraries/Animated/src/Easing'
 
 import { Fonts } from '../../styles'
 

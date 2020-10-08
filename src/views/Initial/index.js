@@ -1,7 +1,7 @@
 import React from 'react'
 import { Image, SafeAreaView, TouchableOpacity, View } from 'react-native'
 
-import { SobrevidaLogoFull, TextSubTitle2, StatusBarColor } from '../../components'
+import { SobrevidaLogoFull, TextSubTitle2, StatusBarColor, Caption } from '../../components'
 import { styles } from './styles'
 import { Colors } from '../../styles'
 
@@ -10,7 +10,7 @@ const Initial = (props) => {
     return (
         <SafeAreaView style={styles.container}>
             
-            <StatusBarColor backgroundColor={Colors.vinho000} />
+            <StatusBarColor backgroundColor={'transparent'} />
 
             {/* Titulo da view inicial */}
             <View style={styles.headerContainer}>
@@ -33,14 +33,14 @@ const Initial = (props) => {
                     style={styles.btnLoginContainer}
                     onPress={() => props.navigation.navigate('Login')}
                 >
-                    <TextSubTitle2 style={styles.btnText}>Faça seu login</TextSubTitle2>
+                    <Caption style={styles.btnText}>Faça seu login</Caption>
                 </TouchableOpacity>
                 
                 {/* Botao para ir para o cadastro */}
                 <TouchableOpacity
                     onPress={() => props.navigation.navigate('Cadastro')}
                 >
-                    <TextSubTitle2 style={styles.btnText}>Torne-se um doador!</TextSubTitle2>
+                    <Caption style={styles.btnText}>Torne-se um doador!</Caption>
                 </TouchableOpacity>
             </View>
 

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { createStackNavigator, TransitionSpecs, HeaderStyleInterpolators } from '@react-navigation/stack'
 
-import { Colors, Fonts, Base } from '../../styles'
+import { Fonts, Base } from '../../styles'
 import { LeftArrow } from '../Icons'
 
 const Stack = createStackNavigator()

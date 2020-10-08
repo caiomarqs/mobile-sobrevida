@@ -20,7 +20,7 @@ const Cadastro = () => {
     return (
         <SafeAreaView style={styles.container}>
             <StatusBarColor
-                backgroundColor={Colors.branco000}
+                backgroundColor={'transparent'}
                 barStyle='dark-content'
                 hasHeader={true}
             />

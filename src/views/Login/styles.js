@@ -28,6 +28,14 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 16,
         elevation: .5,
         shadowOpacity: 1,
+        paddingHorizontal: 16
+    },
+    emailInput: {
+        marginTop: 32,
+        marginBottom: 16
+    },
+    senhaInput:{
+        marginBottom: 16,
     }
 })
 

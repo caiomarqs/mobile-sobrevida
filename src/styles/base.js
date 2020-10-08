@@ -11,6 +11,12 @@ const Base = {
     colorNavigator: {
         backgroundColor: Colors.vinho000,
         contentColor: Colors.branco000
+    },
+    inputContainer: {
+        height: 48,
+        borderBottomColor: Colors.cinza000,
+        borderBottomWidth: .8,
+        fontFamily: "SFUIDisplay-Medium",
     }
 }
 
