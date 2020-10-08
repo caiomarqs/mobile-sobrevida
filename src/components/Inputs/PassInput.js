@@ -9,7 +9,8 @@ const PassInput = ({ style, value, onChangeText, placeholder, ...props }) => {
     return (
         <TextInput
             style={{ ...Base.inputContainer, ...style }}
-            value={value} onChangeText={onChangeText}
+            value={value}
+            onChangeText={onChangeText}
             onFocus={() => setFocus(true)}
             onBlur={() => setFocus(false)}
             placeholder={focus ? '' : placeholder}

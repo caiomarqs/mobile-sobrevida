@@ -17,6 +17,13 @@ const Base = {
         borderBottomColor: Colors.cinza000,
         borderBottomWidth: .8,
         fontFamily: "SFUIDisplay-Medium",
+    },
+    pickerContainer: {
+        height: 48,
+        fontFamily: "SFUIDisplay-Medium",
+        borderBottomColor: Colors.cinza000,
+        borderBottomWidth: .8,
+        width: '100%'
     }
 }
 

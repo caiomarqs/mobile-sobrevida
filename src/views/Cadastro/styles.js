@@ -10,6 +10,13 @@ const styles = StyleSheet.create({
     title:{
         textAlign: "center",
         marginTop: 32
+    },
+    inputsContainer:{
+        paddingHorizontal: 16,
+        paddingTop: 32
+    },
+    cadastroInput:{
+        marginBottom: 16
     }
 })
 
