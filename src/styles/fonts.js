@@ -106,7 +106,7 @@ const Fonts = {
     btnFont: {
         fontFamily: "SFUIDisplay-Black",
         fontSize: FontSize.btnFontSize,
-        lineHeight: LineHeight.btnLineHeight,
+        lineHeight: LineHeight.btnLineHeight
     },
     caption: {
         fontFamily: "SFUIDisplay-Medium",

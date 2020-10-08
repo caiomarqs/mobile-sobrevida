@@ -1,22 +1,31 @@
 import React, { useEffect, useState } from 'react'
-import { SafeAreaView, View, Platform } from 'react-native'
+import { SafeAreaView, View, Platform, Alert } from 'react-native'
 import { Picker, PickerIOS } from '@react-native-community/picker'
 
-
-import { SimpleInput, StatusBarColor, PassInput, TextSubTitle2 } from '../../components'
+import { SimpleInput, StatusBarColor, PassInput, TextSubTitle2, PrimaryButton } from '../../components'
 import { getEstados, getCidades } from '../../services'
-import { sortObjectArrayByKey } from '../../utils'
+import { sortObjectArrayByKey, cadastroValidation, onlyStringMask, cpfMask } from '../../utils'
 import { styles } from './styles'
 import { Base } from '../../styles'
 
 const Cadastro = () => {
 
-    const [loadingUfs, setLoadingUfs] = useState(false)
-    const [loadingCidades, setLoadingCidades] = useState(false)
-    const [cidadesIBGE, setCidadesIBGE] = useState([])
-    const [ufsIBGE, setUfsIBGE] = useState([])
+    //Estados dos inputs
+    const [nome, setNome] = useState('')
+    const [email, setEmail] = useState('')
+    const [senha, setSenha] = useState('')
+    const [cpf, setCpf] = useState('')
     const [selectUf, setSelectUf] = useState('')
     const [selectCidade, setSelectCidade] = useState('')
+
+    //Estados de carregamento
+    const [loadingUfs, setLoadingUfs] = useState(false)
+    const [loadingCidades, setLoadingCidades] = useState(false)
+
+    //Estados vindos da api do IBGE
+    const [cidadesIBGE, setCidadesIBGE] = useState([])
+    const [ufsIBGE, setUfsIBGE] = useState([])
+
 
     useEffect(() => {
         if (!loadingUfs) {
@@ -31,7 +40,7 @@ const Cadastro = () => {
     const handleCarregarCidades = (uf) => {
         setSelectUf(uf)
 
-        if(uf === 0) {
+        if (uf === 0) {
             setLoadingCidades(false)
             return
         }
@@ -40,6 +49,18 @@ const Cadastro = () => {
             setCidadesIBGE(data)
             setLoadingCidades(true)
         })
+    }
+
+    const handleCadastrar = () => {
+        const [test, testErrors] = cadastroValidation(nome, email, senha, cpf, selectUf, selectCidade)
+
+        if (test) {
+            alert('Cadastrado com sucesso!')
+            return
+        }
+        else {
+            Alert.alert('Cadastro Inválido', testErrors.toString().replace(/,/g, '\n'))
+        }
     }
 
     return (
@@ -51,18 +72,17 @@ const Cadastro = () => {
             />
             <TextSubTitle2 style={styles.title}>Faça seu cadastro para se declarar doador</TextSubTitle2>
             <View style={styles.inputsContainer}>
-                <SimpleInput style={styles.cadastroInput} placeholder='Nome completo' />
-                <SimpleInput style={styles.cadastroInput} placeholder='Email' />
-                <PassInput style={styles.cadastroInput} placeholder='Senha' />
-                <SimpleInput style={styles.cadastroInput} placeholder='Cpf' />
+                <SimpleInput style={styles.cadastroInput} placeholder='Nome completo' onChangeText={(text) => setNome(onlyStringMask(text))} value={nome} />
+                <SimpleInput style={styles.cadastroInput} placeholder='Email' onChangeText={(text) => setEmail(text)} value={email} />
+                <PassInput style={styles.cadastroInput} placeholder='Senha' onChangeText={(text) => setSenha(text)} value={senha} />
+                <SimpleInput style={styles.cadastroInput} placeholder='Cpf' onChangeText={(text) => setCpf(cpfMask(text))} value={cpf} maxLength={14} />
                 {
                     loadingUfs
                     &&
                     <Picker
                         onValueChange={(value) => handleCarregarCidades(value)}
                         selectedValue={selectUf ?? 0}
-                        style={{...Base.pickerContainer}}
-                        itemStyle={{fontFamily: "SFUIDisplay-Medium" }}
+                        style={{ ...Base.pickerContainer }}
                     >
                         <Picker.Item label='Uf' value={0} />
                         {
@@ -78,9 +98,7 @@ const Cadastro = () => {
                     <Picker
                         onValueChange={(value) => setSelectCidade(value)}
                         selectedValue={selectCidade ?? 0}
-                        style={{...Base.pickerContainer}}
-                        itemStyle={{ backgroundColor: "grey", color: "blue", fontSize:17 }}
-                        // itemStyle={{fontFamily: "SFUIDisplay-Medium" }}
+                        style={{ ...Base.pickerContainer }}
                     >
                         <Picker.Item label='Cidade' value={0} />
                         {
@@ -90,6 +108,7 @@ const Cadastro = () => {
                         }
                     </Picker>
                 }
+                <PrimaryButton title="Cadastrar" onPress={() => handleCadastrar()} />
             </View>
         </SafeAreaView>
     )

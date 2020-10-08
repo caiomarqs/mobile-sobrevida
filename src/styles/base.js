@@ -24,6 +24,15 @@ const Base = {
         borderBottomColor: Colors.cinza000,
         borderBottomWidth: .8,
         width: '100%'
+    },
+    primaryButton: {
+        height: 48,
+        backgroundColor: Colors.vinho000,
+        borderRadius: 4,
+        alignItems: 'center',
+        justifyContent: 'center',
+        elevation: .8, 
+        shadowOpacity: .8
     }
 }
 

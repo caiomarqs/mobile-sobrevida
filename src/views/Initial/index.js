@@ -3,7 +3,6 @@ import { Image, SafeAreaView, TouchableOpacity, View } from 'react-native'
 
 import { SobrevidaLogoFull, TextSubTitle2, StatusBarColor, Caption } from '../../components'
 import { styles } from './styles'
-import { Colors } from '../../styles'
 
 const Initial = (props) => {
 

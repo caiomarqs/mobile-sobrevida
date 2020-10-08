@@ -1,5 +1,5 @@
 const sortObjectArrayByKey = (arr, key) => {
-    return arr.sort(function (a, b) {
+    return arr.sort((a, b) => {
         if (a[`${key}`] > b[`${key}`]) {
             return 1
         }
