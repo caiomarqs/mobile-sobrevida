@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native'
 
-import { Colors, Base } from '../../styles'
+import { Colors, Base, Heigths } from '../../styles'
 
 const styles = StyleSheet.create({
     container: {
@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     },
     brandingContainer: {
         paddingHorizontal: 16,
-        flex: 7,
+        flex: 1,
         display: 'flex',
         flexDirection: 'row',
         paddingTop: 22
@@ -19,23 +19,42 @@ const styles = StyleSheet.create({
     },
     brandingImg: {
         flex: 1,
-        height: '100%'
+        position: 'absolute',
+        right: 16,
     },
     principalContainer: {
         backgroundColor: Colors.branco000,
-        flex: 5,
+        position: 'absolute',
+        width: '100%',
+        height: 346,
         borderTopRightRadius: 16,
         borderTopLeftRadius: 16,
         elevation: .5,
         shadowOpacity: 1,
-        paddingHorizontal: 16
+        bottom: 0 - Heigths.NAVIGATION_BAR
+    },
+    inputsContainer:{
+        paddingHorizontal: 16,
     },
     emailInput: {
         marginTop: 32,
         marginBottom: 16
     },
-    senhaInput:{
+    senhaInput: {
         marginBottom: 16,
+    },
+    button:{
+        marginTop: 16,
+        marginBottom: 16
+    },
+    rememberPassContainer:{
+        paddingHorizontal: 16,
+        justifyContent: 'center',
+        height: 55,
+        paddingTop: 8
+    },
+    rememberPassText:{
+        color: Colors.vinho000
     }
 })
 

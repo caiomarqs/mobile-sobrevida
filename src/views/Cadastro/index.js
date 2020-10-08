@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { SafeAreaView, View, Platform, Alert } from 'react-native'
+import { SafeAreaView, View, Platform, Alert, KeyboardAvoidingView } from 'react-native'
 import { Picker, PickerIOS } from '@react-native-community/picker'
 
 import { SimpleInput, StatusBarColor, PassInput, TextSubTitle2, PrimaryButton } from '../../components'
@@ -70,46 +70,49 @@ const Cadastro = () => {
                 barStyle='dark-content'
                 hasHeader={true}
             />
-            <TextSubTitle2 style={styles.title}>Faça seu cadastro para se declarar doador</TextSubTitle2>
-            <View style={styles.inputsContainer}>
-                <SimpleInput style={styles.cadastroInput} placeholder='Nome completo' onChangeText={(text) => setNome(onlyStringMask(text))} value={nome} />
-                <SimpleInput style={styles.cadastroInput} placeholder='Email' onChangeText={(text) => setEmail(text)} value={email} />
-                <PassInput style={styles.cadastroInput} placeholder='Senha' onChangeText={(text) => setSenha(text)} value={senha} />
-                <SimpleInput style={styles.cadastroInput} placeholder='Cpf' onChangeText={(text) => setCpf(cpfMask(text))} value={cpf} maxLength={14} />
-                {
-                    loadingUfs
-                    &&
-                    <Picker
-                        onValueChange={(value) => handleCarregarCidades(value)}
-                        selectedValue={selectUf ?? 0}
-                        style={{ ...Base.pickerContainer }}
-                    >
-                        <Picker.Item label='Uf' value={0} />
-                        {
-                            sortObjectArrayByKey(ufsIBGE, 'nome').map((uf, i) => {
-                                return <Picker.Item key={i + uf.id} label={uf.nome} value={uf.sigla} />
-                            })
-                        }
-                    </Picker>
-                }
-                {
-                    loadingCidades
-                    &&
-                    <Picker
-                        onValueChange={(value) => setSelectCidade(value)}
-                        selectedValue={selectCidade ?? 0}
-                        style={{ ...Base.pickerContainer }}
-                    >
-                        <Picker.Item label='Cidade' value={0} />
-                        {
-                            cidadesIBGE.map((cidade, i) => {
-                                return <Picker.Item key={i + cidade.id} label={cidade.nome} value={cidade.nome} />
-                            })
-                        }
-                    </Picker>
-                }
-                <PrimaryButton title="Cadastrar" onPress={() => handleCadastrar()} />
-            </View>
+            <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "height"} style={styles.container}>
+                <TextSubTitle2 style={styles.title}>Faça seu cadastro para se declarar doador</TextSubTitle2>
+                <View style={styles.inputsContainer}>
+                    <SimpleInput style={styles.cadastroInput} placeholder='Nome completo' onChangeText={(text) => setNome(onlyStringMask(text))} value={nome} />
+                    <SimpleInput style={styles.cadastroInput} placeholder='Email' onChangeText={(text) => setEmail(text)} value={email} />
+                    <PassInput style={styles.cadastroInput} placeholder='Senha' onChangeText={(text) => setSenha(text)} value={senha} />
+                    <SimpleInput style={styles.cadastroInput} placeholder='Cpf' onChangeText={(text) => setCpf(cpfMask(text))} value={cpf} maxLength={14} />
+                    {
+                        loadingUfs
+                        &&
+                        <Picker
+                            onValueChange={(value) => handleCarregarCidades(value)}
+                            selectedValue={selectUf ?? 0}
+                            style={{ ...Base.pickerContainer }}
+                        >
+                            <Picker.Item label='Uf' value={0} />
+                            {
+                                sortObjectArrayByKey(ufsIBGE, 'nome').map((uf, i) => {
+                                    return <Picker.Item key={i + uf.id} label={uf.nome} value={uf.sigla} />
+                                })
+                            }
+                        </Picker>
+                    }
+                    {
+                        loadingCidades
+                        &&
+                        <Picker
+                            onValueChange={(value) => setSelectCidade(value)}
+                            selectedValue={selectCidade ?? 0}
+                            style={{ ...Base.pickerContainer }}
+                        >
+                            <Picker.Item label='Cidade' value={0} />
+                            {
+                                cidadesIBGE.map((cidade, i) => {
+                                    return <Picker.Item key={i + cidade.id} label={cidade.nome} value={cidade.nome} />
+                                })
+                            }
+                        </Picker>
+                    }
+                    <View style={styles.inputsContainer}></View>
+                    <PrimaryButton style={styles.button} title="Cadastrar" onPress={() => handleCadastrar()} />
+                </View>
+            </KeyboardAvoidingView>
         </SafeAreaView>
     )
 }

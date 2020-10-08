@@ -1,16 +1,17 @@
-import React, { useContext, useState } from 'react'
-import { Image, SafeAreaView, View } from 'react-native'
+import React, { useContext, useEffect, useState } from 'react'
+import { Image, SafeAreaView, View, KeyboardAvoidingView, Platform } from 'react-native'
 
 import { AuthContext, AUTH_ACTIONS } from '../../context'
-import { TextSubTitle2, SimpleInput, OverLine, PassInput } from '../../components'
+import { TextSubTitle2, SimpleInput, PassInput, CheckInput, PrimaryButton, HairLine, Caption } from '../../components'
 import { styles } from './styles'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 
 
 const Login = (props) => {
 
     const { dispatch } = useContext(AuthContext)
 
-
+    const [keepLogin, setKeepLogin] = useState(false)
 
     const handleCadastro = () => {
         props.navigation.navigate('Cadastro');
@@ -31,14 +32,21 @@ const Login = (props) => {
                 />
             </View>
 
-            <View style={styles.principalContainer}>
-                <SimpleInput placeholder='Email' style={styles.emailInput} />
-                <PassInput
-                    placeholder={'Senha'}
-                    style={styles.senhaInput}
-                />
-                <OverLine>Me manter logado</OverLine>
-            </View>
+            <KeyboardAvoidingView
+                behavior={Platform.OS == "ios" ? "padding" : "height"}
+                style={styles.principalContainer}
+            >
+                <View style={styles.inputsContainer}>
+                    <SimpleInput placeholder='Email' style={styles.emailInput} />
+                    <PassInput placeholder='Senha' style={styles.senhaInput} />
+                    <CheckInput label="Me manter logado" onPress={() => setKeepLogin(!keepLogin)} />
+                    <PrimaryButton title='Login' style={styles.button} />
+                </View>
+                <HairLine />
+                <TouchableOpacity style={styles.rememberPassContainer} activeOpacity={.75}>
+                    <Caption style={styles.rememberPassText}>Esqueçeu a senha?</Caption>
+                </TouchableOpacity>
+            </KeyboardAvoidingView>
 
         </SafeAreaView>
     )

@@ -31,8 +31,21 @@ const Base = {
         borderRadius: 4,
         alignItems: 'center',
         justifyContent: 'center',
-        elevation: .8, 
+        elevation: .8,
         shadowOpacity: .8
+    },
+    checkInput: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        alignSelf: "flex-start"
+    },
+    checkInputCheck: {
+        height: 16,
+        width: 16,
+        backgroundColor: Colors.cinza000,
+        marginRight: 8,
+        borderRadius: 4
     }
 }
 

@@ -8,7 +8,7 @@ const Initial = (props) => {
 
     return (
         <SafeAreaView style={styles.container}>
-            
+
             <StatusBarColor backgroundColor={'transparent'} />
 
             {/* Titulo da view inicial */}
@@ -29,14 +29,16 @@ const Initial = (props) => {
             <View style={styles.btnsContainer}>
                 {/* Botao para ir para o login */}
                 <TouchableOpacity
+                    activeOpacity={.75}
                     style={styles.btnLoginContainer}
                     onPress={() => props.navigation.navigate('Login')}
                 >
                     <Caption style={styles.btnText}>Faça seu login</Caption>
                 </TouchableOpacity>
-                
+
                 {/* Botao para ir para o cadastro */}
                 <TouchableOpacity
+                    activeOpacity={.75}
                     onPress={() => props.navigation.navigate('Cadastro')}
                 >
                     <Caption style={styles.btnText}>Torne-se um doador!</Caption>
