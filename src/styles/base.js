@@ -46,6 +46,13 @@ const Base = {
         backgroundColor: Colors.cinza000,
         marginRight: 8,
         borderRadius: 4
+    },
+    homeButton: {
+        height: 116,
+        backgroundColor: Colors.cinza000,
+        borderRadius: 8,
+        alignItems: 'center',
+        justifyContent: 'center'
     }
 }
 

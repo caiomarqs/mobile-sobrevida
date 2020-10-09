@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 
 import { AuthContext } from '../context'
-import { Home } from '../views'
+import { Home, Familiares, Depoimento, Configuracoes } from '../views'
 import { StackNavigator, Stack } from '../components'
 
 
@@ -15,7 +15,10 @@ const PageRoutes = () => {
                 authState.isAuth
                 &&
                 <StackNavigator initialRouteName="Home">
-                    <Stack.Screen name="Home" component={Home} />
+                    <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
+                    <Stack.Screen name="Familiares" component={Familiares} />
+                    <Stack.Screen name="Depoimento" component={Depoimento} />
+                    <Stack.Screen name="Configuracoes" component={Configuracoes} />
                 </StackNavigator>
             }
         </>

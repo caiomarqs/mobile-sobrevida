@@ -40,10 +40,17 @@ const Login = (props) => {
                     <SimpleInput placeholder='Email' style={styles.emailInput} />
                     <PassInput placeholder='Senha' style={styles.senhaInput} />
                     <CheckInput label="Me manter logado" onPress={() => setKeepLogin(!keepLogin)} />
-                    <PrimaryButton title='Login' style={styles.button} />
+                    <PrimaryButton
+                        onPress={() => handleLogin()}
+                        title='Login'
+                        style={styles.button}
+                    />
                 </View>
                 <HairLine />
-                <TouchableOpacity style={styles.rememberPassContainer} activeOpacity={.75}>
+                <TouchableOpacity
+                    activeOpacity={.75}
+                    style={styles.rememberPassContainer}
+                >
                     <Caption style={styles.rememberPassText}>Esqueçeu a senha?</Caption>
                 </TouchableOpacity>
             </KeyboardAvoidingView>

@@ -94,7 +94,7 @@ const Fonts = {
     },
 
     links: {
-        fontFamily: "SFUIDisplay-Medium",
+        fontFamily: "SFUIDisplay-Semibold",
         fontSize: FontSize.linksFontSize,
         lineHeight: LineHeight.linksLineHeight
     },
