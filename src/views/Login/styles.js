@@ -1,6 +1,11 @@
 import { StyleSheet } from 'react-native'
 
-import { Colors, Base, Heigths } from '../../styles'
+import { Colors, Base, Heigths, Widths } from '../../styles'
+
+const PRICIPAL_CONTAINER_BOTTOM_POS = Heigths.NAVIGATION_BAR > 0 ? 0 - Heigths.NAVIGATION_BAR : -22
+const IMAGE_WIDTH = Heigths.WINDOW_HEIGHT <= 640 ? (Widths.WINDOW_WIDTH / 3) : 220 //imagem ocupa 33% da largura da tela em dispositiovos de menos de 4.7'
+const IMAGE_RATIO = IMAGE_WIDTH / 220 //Ratio -> largura atual da imagem / largura original
+
 
 const styles = StyleSheet.create({
     container: {
@@ -21,6 +26,10 @@ const styles = StyleSheet.create({
         flex: 1,
         position: 'absolute',
         right: 16,
+        bottom: 346 + PRICIPAL_CONTAINER_BOTTOM_POS,
+        maxHeight: 364.64,
+        width: IMAGE_WIDTH,
+        height: 364.64 * IMAGE_RATIO // Altura orignal / ratio -> Para q a se torne "responsiva"
     },
     principalContainer: {
         backgroundColor: Colors.branco000,
@@ -31,9 +40,9 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 16,
         elevation: .5,
         shadowOpacity: 1,
-        bottom: 0 - Heigths.NAVIGATION_BAR
+        bottom: PRICIPAL_CONTAINER_BOTTOM_POS
     },
-    inputsContainer:{
+    inputsContainer: {
         paddingHorizontal: 16,
     },
     emailInput: {
@@ -43,17 +52,17 @@ const styles = StyleSheet.create({
     senhaInput: {
         marginBottom: 16,
     },
-    button:{
+    button: {
         marginTop: 16,
         marginBottom: 16
     },
-    rememberPassContainer:{
+    rememberPassContainer: {
         paddingHorizontal: 16,
         justifyContent: 'center',
         height: 55,
         paddingTop: 8
     },
-    rememberPassText:{
+    rememberPassText: {
         color: Colors.vinho000
     }
 })

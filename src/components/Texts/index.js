@@ -1,5 +1,6 @@
 export * from './TextSubTitle2'
-export * from './Caption'
+export * from './CaptionText'
+export * from './CaptionLigthText'
 export * from './Overline'
 export * from './ButtonText'
 export * from './TitleText'

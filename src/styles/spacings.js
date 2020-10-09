@@ -13,10 +13,11 @@ const STATUS_BAR = StatusBar.statusBarHeight || 24
 const WINDOW_HEIGHT = Dimensions.get('window').height
 const NAVIGATION_BAR = Platform.OS == "ios" ? 0 : DEVICE_HEIGHT - (STATUS_BAR + WINDOW_HEIGHT)
 
+const Heigths = { DEVICE_HEIGHT, STATUS_BAR, WINDOW_HEIGHT, NAVIGATION_BAR }
+
+
 const DEVICE_WIDTH = Dimensions.get('screen').width
 const WINDOW_WIDTH = Dimensions.get('window').width
-
-const Heigths = { DEVICE_HEIGHT, STATUS_BAR, WINDOW_HEIGHT, NAVIGATION_BAR }
 
 const Widths = { DEVICE_WIDTH, WINDOW_WIDTH }
 

@@ -3,8 +3,8 @@ import { Text } from 'react-native'
 
 import { Fonts } from '../../styles'
 
-const Caption = ({ style, ...props }) => {
+const CaptionText = ({ style, ...props }) => {
     return <Text style={{ ...Fonts.caption, ...style }} >{props.children}</Text>
 }
 
-export { Caption }
+export { CaptionText }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { TouchableOpacity, View } from 'react-native'
 
-import { OverLine } from '../Texts'
+import { CaptionLigthText } from '../Texts'
 import { Colors, Base } from '../../styles'
 
 const CheckInput = ({ label, style, onPress = () => { }, ...props }) => {
@@ -18,7 +18,7 @@ const CheckInput = ({ label, style, onPress = () => { }, ...props }) => {
             }}
         >
             <View style={[{ ...Base.checkInputCheck }, checked && { backgroundColor: Colors.vinho000 }]} />
-            <OverLine>{label}</OverLine>
+            <CaptionLigthText>{label}</CaptionLigthText>
         </TouchableOpacity>
     )
 }

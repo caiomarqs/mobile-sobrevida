@@ -1,43 +1,48 @@
 import { StyleSheet } from 'react-native'
 
-import { Base, Colors, Paddings } from '../../styles'
+import { Base, Colors, Paddings, Heigths, Widths } from '../../styles'
+
+const IMAGE_WIDTH = Heigths.WINDOW_HEIGHT <= 640 ? Widths.WINDOW_WIDTH : Widths.WINDOW_WIDTH + 100
+const IMAGE_RATIO = IMAGE_WIDTH / 511
 
 const styles = StyleSheet.create({
     container: {
         ...Base.viewContainer,
         backgroundColor: Colors.vinho000,
     },
-    backgroundImage: {
-        flex: 1,
-        width: '100%'
-    },
     headerContainer: {
-        flex: 1,
+        flex: 2,
         paddingHorizontal: Paddings.viewContainerPaddingHorizontal,
     },
     logoHeader: {
         marginTop: 32,
         marginBottom: 16
     },
-    title:{
+    title: {
         width: 132,
         color: Colors.branco000
     },
     brandingContainer: {
-        flex: 4,
-        maxHeight: 448
-    },
-    btnsContainer: {
-        paddingHorizontal: Paddings.viewContainerPaddingHorizontal,
-        flex: 1,
-        flexDirection: 'column',
+        display: 'flex',
         alignItems: 'center',
         justifyContent: 'center'
     },
-    btnLoginContainer:{
+    backgroundImage: {
+        width: IMAGE_WIDTH,
+        height: 452 * IMAGE_RATIO
+    },
+    btnsContainer: {
+        paddingHorizontal: Paddings.viewContainerPaddingHorizontal,
+        flex: 2,
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: Colors.vinho000,
+    },
+    btnLoginContainer: {
         marginBottom: 16
     },
-    btnText:{
+    btnText: {
         color: Colors.branco000
     }
 })
