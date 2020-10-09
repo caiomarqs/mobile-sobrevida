@@ -1,7 +1,7 @@
 import React from 'react'
 import { Image, SafeAreaView, TouchableOpacity, View } from 'react-native'
 
-import { SobrevidaLogoFull, TextSubTitle2, StatusBarColor, CaptionText } from '../../components'
+import { SobrevidaLogoFull, SubTitleBoldText, StatusBarColor, CaptionText } from '../../components'
 import { styles } from './styles'
 
 const Initial = (props) => {
@@ -14,7 +14,7 @@ const Initial = (props) => {
             {/* Titulo da view inicial */}
             <View style={styles.headerContainer}>
                 <SobrevidaLogoFull style={styles.logoHeader} />
-                <TextSubTitle2 style={styles.title}>Plante vidas novas!</TextSubTitle2>
+                <SubTitleBoldText style={styles.title}>Plante vidas novas!</SubTitleBoldText>
             </View>
 
             {/* Imagem da view inicial */}

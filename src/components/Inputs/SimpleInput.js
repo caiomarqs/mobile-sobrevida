@@ -1,17 +1,17 @@
 import React, { useState } from 'react'
-import { TextInput, Keyboard } from 'react-native'
+import { TextInput, KeyboardTypeOptions } from 'react-native'
 import { Base } from '../../styles'
 
-const SimpleInput = ({ style, value, onChangeText, placeholder, ...props }) => {
-
-
-
+const SimpleInput = ({ style, value, onChangeText, placeholder, keyboardType, forwardRef, onSubmitEditing, ...props }) => {
     return (
         <TextInput
             style={{ ...Base.inputContainer, ...style }}
-            value={value} 
+            value={value}
             onChangeText={onChangeText}
             placeholder={placeholder}
+            keyboardType={keyboardType}
+            ref={forwardRef}
+            onSubmitEditing={onSubmitEditing}
             {...props}
         />
     )

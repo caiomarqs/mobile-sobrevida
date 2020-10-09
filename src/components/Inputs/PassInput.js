@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { TextInput } from 'react-native'
 import { Base } from '../../styles'
 
-const PassInput = ({ style, value, onChangeText = () => {}, placeholder, ...props }) => {
+const PassInput = ({ style, value, onChangeText = () => { }, placeholder, forwardRef, onSubmitEditing, ...props }) => {
 
     const [inputValue, setInputValue] = useState('')
 
@@ -15,7 +15,9 @@ const PassInput = ({ style, value, onChangeText = () => {}, placeholder, ...prop
                 setInputValue(value)
             }}
             placeholder={placeholder}
-            secureTextEntry={inputValue !== '' ? true : false} 
+            secureTextEntry={inputValue !== '' ? true : false}
+            ref={forwardRef}
+            onSubmitEditing={onSubmitEditing}
             {...props}
         />
     )

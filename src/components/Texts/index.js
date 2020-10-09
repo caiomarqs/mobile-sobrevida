@@ -1,4 +1,4 @@
-export * from './TextSubTitle2'
+export * from './SubTitleBoldText'
 export * from './CaptionText'
 export * from './CaptionLigthText'
 export * from './Overline'

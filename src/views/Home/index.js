@@ -2,14 +2,14 @@ import React, { useContext } from 'react'
 import { Button, SafeAreaView, Text, View, ScrollView } from 'react-native'
 
 import { AuthContext, AUTH_ACTIONS } from '../../context'
-import { HomeHeader, StatusBarColor, TitleText, TextSubTitle2, HomeButton, FamilyIcon, DocumentIcon, ConfigIcon } from '../../components'
+import { HomeHeader, StatusBarColor, TitleText, SubTitleBoldText, HomeButton, FamilyIcon, DocumentIcon, ConfigIcon } from '../../components'
 import { Heigths, Widths } from '../../styles'
 
 import { styles } from './styles'
 
 const homeButtonsProps = [
     { title: 'Familiares', icon: <FamilyIcon />, route: 'Familiares' },
-    { title: 'Depoimento', icon: <FamilyIcon />, route: 'Depoimento' },
+    { title: 'Depoimento', icon: <DocumentIcon />, route: 'Depoimento' },
     { title: 'Configurações', icon: <ConfigIcon />, route: 'Configuracoes' }
 ]
 
@@ -37,7 +37,7 @@ const Home = (props) => {
                         <View style={styles.slide} />
                     </View>
 
-                    <TextSubTitle2 style={styles.subTitle}>Funções</TextSubTitle2>
+                    <SubTitleBoldText style={styles.subTitle}>Funções</SubTitleBoldText>
 
                     <View style={styles.homeButtonsContanier}>
                         {

@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import { Image, View, KeyboardAvoidingView, Platform, TouchableOpacity, SafeAreaView } from 'react-native'
 
 import { AuthContext, AUTH_ACTIONS } from '../../context'
-import { TextSubTitle2, SimpleInput, PassInput, CheckInput, PrimaryButton, HairLine, CaptionText } from '../../components'
+import { SubTitleBoldText, SimpleInput, PassInput, CheckInput, PrimaryButton, HairLine, CaptionText } from '../../components'
 import { useKeyBoardIsVisible } from '../../hooks'
 
 import { styles } from './styles'
@@ -25,7 +25,7 @@ const Login = (props) => {
             <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
 
                 <View style={styles.brandingContainer}>
-                    <TextSubTitle2 style={styles.title}>Bem vindo de volta!</TextSubTitle2>
+                    <SubTitleBoldText style={styles.title}>Bem vindo de volta!</SubTitleBoldText>
                     {
                         !keyBoardIsVisible
                         &&
