@@ -2,9 +2,8 @@ import React, { useState } from 'react'
 import { TextInput } from 'react-native'
 import { Base } from '../../styles'
 
-const PassInput = ({ style, value, onChangeText, placeholder, ...props }) => {
+const PassInput = ({ style, value, onChangeText = () => {}, placeholder, ...props }) => {
 
-    const [focus, setFocus] = useState(false)
     const [inputValue, setInputValue] = useState('')
 
     return (
@@ -15,10 +14,8 @@ const PassInput = ({ style, value, onChangeText, placeholder, ...props }) => {
                 onChangeText(value)
                 setInputValue(value)
             }}
-            onFocus={() => setFocus(true)}
-            onBlur={() => setFocus(false)}
-            placeholder={focus ? '' : placeholder}
-            secureTextEntry={focus || (inputValue !== '') ? true : false} 
+            placeholder={placeholder}
+            secureTextEntry={inputValue !== '' ? true : false} 
             {...props}
         />
     )

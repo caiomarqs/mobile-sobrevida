@@ -70,7 +70,7 @@ const Cadastro = () => {
                 barStyle='dark-content'
                 hasHeader={true}
             />
-            <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "height"} style={styles.container}>
+            <KeyboardAvoidingView behavior='padding' style={styles.container}>
                 <TextSubTitle2 style={styles.title}>Faça seu cadastro para se declarar doador</TextSubTitle2>
                 <View style={styles.inputsContainer}>
                     <SimpleInput style={styles.cadastroInput} placeholder='Nome completo' onChangeText={(text) => setNome(onlyStringMask(text))} value={nome} />

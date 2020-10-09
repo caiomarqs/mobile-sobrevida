@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
         paddingTop: 22
     },
     title: {
-        width: 132,
+        width: 160,
         color: Colors.branco000,
     },
     brandingImg: {
