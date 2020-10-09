@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native'
 
 import { Colors, Base, Heigths, Widths } from '../../styles'
 
-const PRICIPAL_CONTAINER_BOTTOM_POS = Heigths.NAVIGATION_BAR > 0 ? 0 - Heigths.NAVIGATION_BAR : -22
+const PRICIPAL_CONTAINER_BOTTOM_POS = Heigths.NAVIGATION_BAR > 0 ? 0 - Heigths.NAVIGATION_BAR : 0
 const IMAGE_WIDTH = Heigths.WINDOW_HEIGHT <= 640 ? (Widths.WINDOW_WIDTH / 3) : 220 //imagem ocupa 33% da largura da tela em dispositiovos de menos de 4.7'
 const IMAGE_RATIO = IMAGE_WIDTH / 220 //Ratio -> largura atual da imagem / largura original
 
@@ -59,8 +59,8 @@ const styles = StyleSheet.create({
     rememberPassContainer: {
         paddingHorizontal: 16,
         justifyContent: 'center',
-        height: 55,
-        paddingTop: 8
+        flex: 1,
+        paddingBottom: Heigths.NAVIGATION_BAR > 0 ? Heigths.NAVIGATION_BAR : 0
     },
     rememberPassText: {
         color: Colors.vinho000

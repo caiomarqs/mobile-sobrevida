@@ -1,13 +1,11 @@
 import React, { useContext, useState } from 'react'
-import { Image, View, KeyboardAvoidingView, Platform, TouchableOpacity, Dimensions } from 'react-native'
-import { SafeAreaView, initialWindowMetrics } from 'react-native-safe-area-context'
+import { Image, View, KeyboardAvoidingView, Platform, TouchableOpacity, SafeAreaView } from 'react-native'
 
 import { AuthContext, AUTH_ACTIONS } from '../../context'
 import { TextSubTitle2, SimpleInput, PassInput, CheckInput, PrimaryButton, HairLine, CaptionText } from '../../components'
 import { useKeyBoardIsVisible } from '../../hooks'
 
 import { styles } from './styles'
-
 
 
 const Login = (props) => {
@@ -23,8 +21,8 @@ const Login = (props) => {
     }
 
     return (
-        <SafeAreaView initialWindowMetrics={initialWindowMetrics} style={styles.container} >
-            <KeyboardAvoidingView style={styles.container} behavior='padding'>
+        <SafeAreaView style={styles.container} >
+            <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
 
                 <View style={styles.brandingContainer}>
                     <TextSubTitle2 style={styles.title}>Bem vindo de volta!</TextSubTitle2>
@@ -46,7 +44,7 @@ const Login = (props) => {
                         <PrimaryButton onPress={() => handleLogin()} title='Login' style={styles.button} />
                     </View>
                     <HairLine />
-                    <TouchableOpacity activeOpacity={.75} style={styles.rememberPassContainer}>
+                    <TouchableOpacity activeOpacity={.75} style={styles.rememberPassContainer} onPress={() => props.navigation.navigate('ForgotPass')}>
                         <CaptionText style={styles.rememberPassText}>Esqueçeu a senha?</CaptionText>
                     </TouchableOpacity>
                 </View>
