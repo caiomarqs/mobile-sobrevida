@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.branco000,
         position: 'absolute',
         width: '100%',
-        height: 346,
+        minHeight: 346,
         borderTopRightRadius: 16,
         borderTopLeftRadius: 16,
         elevation: .5,
@@ -60,10 +60,11 @@ const styles = StyleSheet.create({
         paddingHorizontal: 16,
         justifyContent: 'center',
         flex: 1,
-        paddingBottom: Heigths.NAVIGATION_BAR > 0 ? Heigths.NAVIGATION_BAR : 0
     },
     rememberPassText: {
-        color: Colors.vinho000
+        color: Colors.vinho000,
+        marginBottom: Heigths.NAVIGATION_BAR > 0 ? Heigths.NAVIGATION_BAR + 16 : 0,
+        marginTop:  Heigths.NAVIGATION_BAR > 0 ? 16 : 0
     }
 })
 

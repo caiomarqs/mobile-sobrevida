@@ -4,17 +4,22 @@ import { Colors } from '../../styles'
 
 const styles = StyleSheet.create({
     container: {
+        flex: 1
+    },
+    contentContainer: {
         paddingHorizontal: 16,
+        flex: 1
     },
     title: {
         maxWidth: 126,
         marginTop: 32
     },
     slideContainer: {
-        marginTop: 16
+        marginTop: 16, 
+        flex: 1
     },
     slide: {
-        height: 286,
+        flex: 1,
         backgroundColor: Colors.vinhoP000,
         borderRadius: 8
     },
