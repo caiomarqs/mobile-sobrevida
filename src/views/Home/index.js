@@ -1,9 +1,9 @@
 import React, { useContext } from 'react'
-import { Button, SafeAreaView, View } from 'react-native'
+import { Button, SafeAreaView, View, ScrollView, Text } from 'react-native'
 
 import { AuthContext, AUTH_ACTIONS } from '../../context'
 import { HomeHeader, StatusBarColor, TitleText, SubTitleBoldText, HomeButton, FamilyIcon, DocumentIcon, ConfigIcon } from '../../components'
-import { Widths } from '../../styles'
+import { Widths, Colors } from '../../styles'
 
 import { styles } from './styles'
 
@@ -11,6 +11,11 @@ const homeButtonsProps = [
     { title: 'Familiares', icon: <FamilyIcon />, route: 'Familiares' },
     { title: 'Depoimento', icon: <DocumentIcon />, route: 'Depoimento' },
     { title: 'Configurações', icon: <ConfigIcon />, route: 'Configuracoes' }
+]
+
+const slides = [
+    { backgroundColor: Colors.vinhoP000 },
+    { backgroundColor: Colors.verdeP000 },
 ]
 
 const Home = (props) => {
@@ -33,9 +38,22 @@ const Home = (props) => {
             <View style={styles.contentContainer}>
                 <TitleText style={styles.title}>Ola, Fulano</TitleText>
 
-                <View style={styles.slideContainer}>
-                    <View style={styles.slide} />
-                </View>
+                <ScrollView style={styles.slideContainer} horizontal snapToInterval={Widths.WINDOW_WIDTH} showsHorizontalScrollIndicator={false}>
+                    {
+                        slides.map((slide, index) => {
+                            return (
+                                <View
+                                    key={index}
+                                    style={{
+                                        ...styles.slide,
+                                        backgroundColor: slide.backgroundColor,
+                                        marginRight: index !== slides.length - 1 ? 16 : 0
+                                    }}
+                                />
+                            )
+                        })
+                    }
+                </ScrollView>
 
                 <SubTitleBoldText style={styles.subTitle}>Funções</SubTitleBoldText>
 
