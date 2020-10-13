@@ -1,9 +1,11 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Button, SafeAreaView, View, ScrollView, Text } from 'react-native'
 
 import { AuthContext, AUTH_ACTIONS } from '../../context'
 import { HomeHeader, StatusBarColor, TitleText, SubTitleBoldText, HomeButton, FamilyIcon, DocumentIcon, ConfigIcon } from '../../components'
 import { Widths, Colors } from '../../styles'
+import { storeString, getData, storeData } from '../../utils'
+import { getUser } from '../../services'
 
 import { styles } from './styles'
 
@@ -21,9 +23,24 @@ const slides = [
 const Home = (props) => {
 
     const { dispatch } = useContext(AuthContext)
+    const [nome, setNome] = useState('')
+
+    useEffect(() => {
+        getData('userData').then((user) => {
+            getUser(user.id, user.token).then(({ data }) => {
+                setNome(data.nome)
+            })
+        })
+    }, [])
 
     const handleLogOut = () => {
-        dispatch({ type: AUTH_ACTIONS.LOGOUT })
+        try {
+            storeString('keepLogin', 'false')
+            storeData('userData', {})
+            dispatch({ type: AUTH_ACTIONS.LOGOUT })
+        } catch (error) {
+            alert('Não foi possivel dazer o login')   
+        }
     }
 
     return (
@@ -36,9 +53,14 @@ const Home = (props) => {
             <HomeHeader logOut={() => handleLogOut()} />
 
             <View style={styles.contentContainer}>
-                <TitleText style={styles.title}>Ola, Fulano</TitleText>
+                <TitleText style={styles.title}>Ola, {`\n${nome}`}</TitleText>
 
-                <ScrollView style={styles.slideContainer} horizontal snapToInterval={Widths.WINDOW_WIDTH} showsHorizontalScrollIndicator={false}>
+                <ScrollView
+                    style={styles.slideContainer}
+                    horizontal
+                    snapToInterval={Widths.WINDOW_WIDTH}
+                    showsHorizontalScrollIndicator={false}
+                >
                     {
                         slides.map((slide, index) => {
                             return (

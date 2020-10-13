@@ -1,4 +1,4 @@
-import React, { createContext, useReducer } from 'react'
+import React, { createContext, useEffect, useReducer } from 'react'
 
 import { authReducer } from '../reducers'
 
@@ -13,6 +13,7 @@ const intialState = {
 const AuthProvider = (props) => {
 
     const [authState, dispatch] = useReducer(authReducer, intialState)
+
 
     return (
         <AuthContext.Provider value={{ authState, dispatch }}>
