@@ -28,9 +28,11 @@ const Login = (props) => {
             authValidation(email, senha).then(({ data }) => {
                 if (!data.email) {
                     alert("Email não cadastrado")
+                    return
                 }
                 else if (!data.password) {
                     alert("Senha incorreta")
+                    return
                 }
                 else {
                     authLogIn(email, senha).then(({ data }) => {

@@ -2,13 +2,15 @@ import React, { useEffect, useState, useRef } from 'react'
 import { SafeAreaView, View, Platform, Alert, KeyboardAvoidingView } from 'react-native'
 import { Picker, PickerIOS } from '@react-native-community/picker'
 
-import { SimpleInput, StatusBarColor, PassInput, SubTitleBoldText, PrimaryButton } from '../../components'
-import { getEstados, getCidades } from '../../services'
+import { SimpleInput, StatusBarColor, PassInput, SubTitleBoldText, PrimaryButton, CheckInput } from '../../components'
+import { getEstados, getCidades, postUser } from '../../services'
 import { sortObjectArrayByKey, cadastroValidation, onlyStringMask, cpfMask } from '../../utils'
 import { styles } from './styles'
 import { Base } from '../../styles'
 
-const Cadastro = () => {
+
+
+const Cadastro = (props) => {
 
     //Estados dos inputs
     const [nome, setNome] = useState('')
@@ -17,6 +19,7 @@ const Cadastro = () => {
     const [cpf, setCpf] = useState('')
     const [selectUf, setSelectUf] = useState('')
     const [selectCidade, setSelectCidade] = useState('')
+    const [terms, setTerms] = useState(false)
 
     //Estados de carregamento
     const [loadingUfs, setLoadingUfs] = useState(false)
@@ -58,12 +61,26 @@ const Cadastro = () => {
     const handleCadastrar = () => {
         const [test, testErrors] = cadastroValidation(nome, email, senha, cpf, selectUf, selectCidade)
 
-        if (test) {
-            alert('Cadastrado com sucesso!')
+        if (!terms) {
+            Alert.alert('Cadastro Inválido', 'É necessario concordar com os termos')
             return
         }
+        else if (!test) {
+            Alert.alert('Cadastro Inválido', testErrors.toString().replace(/,/g, '\n'))
+            return
+        }
+        else {
+            const user = { nome: nome, email: email, password: senha, cpf: cpf, uf: selectUf, cidade: selectCidade }
 
-        Alert.alert('Cadastro Inválido', testErrors.toString().replace(/,/g, '\n'))
+            try {
+               postUser(user)
+            }
+            catch {
+                Alert.alert('Cadastro Inválido', 'Não foi possivel cadastra no servidor!')
+            }
+            
+            props.navigation.navigate('Login')
+        }
     }
 
     return (
@@ -79,11 +96,11 @@ const Cadastro = () => {
             >
 
                 <SubTitleBoldText style={styles.title}>Faça seu cadastro para se declarar doador</SubTitleBoldText>
-                
+
                 <View style={styles.inputsContainer}>
 
                     <SimpleInput
-                        onChangeText={(text) => setNome(text)}
+                        onChangeText={(text) => setNome(onlyStringMask(text))}
                         onSubmitEditing={() => emailInputRef.current.focus()}
                         placeholder='Nome completo'
                         returnKeyType="next"
@@ -157,7 +174,14 @@ const Cadastro = () => {
                             }
                         </Picker>
                     }
-                    <View style={styles.inputsContainer} />
+
+                    <CheckInput
+                        label="Você concorda em ser um doador de orgãos?"
+                        onPress={() => setTerms(!terms)}
+                    />
+
+                    <View style={styles.divider} />
+
                     <PrimaryButton
                         onPress={() => handleCadastrar()}
                         style={styles.button}

@@ -7,11 +7,11 @@ const cadastroValidation = (nome, email, senha, cpf, uf, cidade) => {
     const thisErrors = []
 
     if (nome.trim().length < 2) {
-        thisErrors.push('O nome é muito curto')
+        thisErrors.push('Nome inválido')
     }
 
     if (!regexEmail.test(email)) {
-        thisErrors.push('Insira um email válido')
+        thisErrors.push('Email inválido')
     }
 
     if (!regexPassword.test(senha)) {
@@ -19,7 +19,7 @@ const cadastroValidation = (nome, email, senha, cpf, uf, cidade) => {
     }
 
     if (!validateCpf(cpf)) {
-        thisErrors.push('Cpf invalido')
+        thisErrors.push('CPF inválido')
     }
 
     if (uf === 0) {

@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     dot: {
         width: 8,
         height: 8,
-        backgroundColor: Colors.vinho000,
+        backgroundColor: 'rgba(0, 0, 0, 0.3)',
         borderRadius: 4
     }
 })

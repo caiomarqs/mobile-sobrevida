@@ -17,6 +17,9 @@ const styles = StyleSheet.create({
         paddingTop: 32,
         flex: 1
     },
+    divider:{
+        flex: 1
+    },
     cadastroInput:{
         marginBottom: 16
     },

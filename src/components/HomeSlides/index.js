@@ -12,15 +12,15 @@ import documentIlustration from '../../assets/img/documentIlustration.png'
 const slides = [
     {
         backgroundColor: Colors.vinhoP000,
-        title: 'Cadastre seus familires',
+        image: familyIlustration,
         subTitle: 'Para que saibam da sua vontade, você deve cadastrar seus familiares!',
-        image: familyIlustration
+        title: 'Cadastre seus familires'
     },
     {
         backgroundColor: Colors.verdeP000,
-        title: 'Cadastre seu depoimento',
+        image: documentIlustration,
         subTitle: 'Para que fique registrado seu depoimento cadastre-o na plataforma para q seus familiares possam ve-lo',
-        image: documentIlustration
+        title: 'Cadastre seu depoimento'
     },
 ]
 
@@ -32,12 +32,11 @@ const HomeSlides = (props) => {
         <View
             style={styles.container}
         >
-            <CaptionLigthText>{8 - (-8)  * xPos / 344}</CaptionLigthText>
             <ScrollView
-                style={styles.slideContainer}
                 horizontal
-                snapToInterval={Widths.WINDOW_WIDTH}
                 showsHorizontalScrollIndicator={false}
+                snapToInterval={Widths.WINDOW_WIDTH}
+                style={styles.slideContainer}
                 onScroll={(event) => {
                     setXPos(event.nativeEvent.contentOffset.x)
                 }}
@@ -54,11 +53,23 @@ const HomeSlides = (props) => {
                                 }}
                             >
                                 <View>
-                                    <SlideTitleText style={{ color: slide.backgroundColor === Colors.vinhoP000 ? Colors.vinho000 : Colors.verde000 }} >{slide.title}</SlideTitleText>
+                                    <SlideTitleText
+                                        style={{
+                                            color: slide.backgroundColor === Colors.vinhoP000
+                                                ? Colors.vinho000
+                                                : Colors.verde000
+                                        }}
+                                    >
+                                        {slide.title}
+                                    </SlideTitleText>
+
                                     <CaptionLigthText>{slide.subTitle}</CaptionLigthText>
                                 </View>
 
-                                <Image style={styles.image} source={slide.image} />
+                                <Image
+                                    style={styles.image}
+                                    source={slide.image}
+                                />
                             </View>
                         )
                     })
@@ -66,8 +77,17 @@ const HomeSlides = (props) => {
 
             </ScrollView>
             <View style={styles.dotsContainer}>
-                <Animated.View style={{ ...styles.dot, width: 16 - 8 * xPos / 344, marginRight: 8 }} />
-                <Animated.View style={{ ...styles.dot, width: 8 - (-8) * xPos / 344 }} />
+                <Animated.View style={{
+                    ...styles.dot,
+                    backgroundColor: 16 - 8 * xPos / 344 >= 16 ? Colors.vinho000 : 'rgba(0, 0, 0, 0.3)',
+                    marginRight: 8,
+                    width: 16 - 8 * xPos / 344
+                }} />
+                <Animated.View style={{
+                    ...styles.dot,
+                    backgroundColor: 8 - (-8) * xPos / 344 >= 16 ? Colors.verde000 : 'rgba(0, 0, 0, 0.3)',
+                    width: 8 - (-8) * xPos / 344
+                }} />
             </View>
         </View>
 

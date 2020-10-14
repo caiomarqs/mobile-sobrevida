@@ -29,10 +29,6 @@ const postUser = async (user) => {
             endereco: {
                 uf: user.uf,
                 cidade: user.cidade
-            },
-            depoimento: {
-                depoimento: user.depoimento,
-                pathToFile: ""
             }
         },
         headers: {
