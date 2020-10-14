@@ -88,7 +88,7 @@ const Fonts = {
     },
 
     body2: {
-        fontFamily: "SFUIDisplay-Medium",
+        fontFamily: "SFUIDisplay-Bold",
         fontSize: FontSize.body2FontSize,
         lineHeight: LineHeight.body2LineHeight
     },

@@ -3,8 +3,8 @@ import { Text } from 'react-native'
 
 import { Fonts } from '../../styles'
 
-const OverLine = ({ style, ...props }) => {
+const OverLineText = ({ style, ...props }) => {
     return <Text style={{ ...Fonts.overline, ...style }} >{props.children}</Text>
 }
 
-export { OverLine }
+export { OverLineText }
