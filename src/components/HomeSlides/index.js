@@ -32,7 +32,7 @@ const HomeSlides = (props) => {
         <View
             style={styles.container}
         >
-            <CaptionLigthText>{16 - 8 * xPos / 344}</CaptionLigthText>
+            <CaptionLigthText>{8 - (-8)  * xPos / 344}</CaptionLigthText>
             <ScrollView
                 style={styles.slideContainer}
                 horizontal
@@ -67,7 +67,7 @@ const HomeSlides = (props) => {
             </ScrollView>
             <View style={styles.dotsContainer}>
                 <Animated.View style={{ ...styles.dot, width: 16 - 8 * xPos / 344, marginRight: 8 }} />
-                <Animated.View style={{ ...styles.dot, width: 16 - 8 * xPos / 344 }} />
+                <Animated.View style={{ ...styles.dot, width: 8 - (-8) * xPos / 344 }} />
             </View>
         </View>
 
