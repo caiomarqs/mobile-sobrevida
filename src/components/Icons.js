@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Svg, Path, Rect, Defs, G, ClipPath } from 'react-native-svg'
+import { Svg, Path, Rect, Defs, G, ClipPath, Mask } from 'react-native-svg'
 
 const SobrevidaLogoFull = ({ fill, ...props }) => {
     return (
@@ -93,4 +93,15 @@ const ConfigIcon = (props) => {
     )
 }
 
-export { SobrevidaLogoFull, LeftArrow, SobreVidaHeaderLogo, FamilyIcon, DocumentIcon, ConfigIcon }
+const SimpleArrow = (props) => {
+    return (
+        <Svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <Path fill-rule="evenodd" clip-rule="evenodd" d="M9.62366 3.99789C9.29458 4.33086 9.29772 4.86756 9.63069 5.19664L18.4092 13.8728L9.56649 22.8949C9.2388 23.2293 9.24419 23.766 9.57853 24.0937C9.91286 24.4213 10.4495 24.416 10.7772 24.0816L20.2108 14.4566C20.5376 14.1233 20.5333 13.5885 20.2013 13.2604L10.8224 3.99086C10.4894 3.66178 9.95274 3.66493 9.62366 3.99789Z" fill="#AA0034" />
+        </Svg>
+
+
+    )
+
+}
+
+export { SobrevidaLogoFull, LeftArrow, SobreVidaHeaderLogo, FamilyIcon, DocumentIcon, ConfigIcon, SimpleArrow }

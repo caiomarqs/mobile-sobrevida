@@ -5,9 +5,7 @@ import { authReducer } from '../reducers'
 const AuthContext = createContext()
 
 const intialState = {
-    isAuth: false,
-    name: '',
-    email: ''
+    isAuth: false
 }
 
 const AuthProvider = (props) => {

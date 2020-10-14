@@ -10,7 +10,7 @@ import {
     TitleText
 } from '../../components'
 
-import { AuthContext, AUTH_ACTIONS } from '../../context'
+import { AuthContext, AUTH_ACTIONS, UserContext, USER_ACTIONS } from '../../context'
 
 import { storeString, getData, storeData } from '../../utils'
 import { getUser } from '../../services'
@@ -20,13 +20,16 @@ import { styles } from './styles'
 
 const Home = (props) => {
 
-    const { dispatch } = useContext(AuthContext)
+    const { dispatch: dispatchAuth } = useContext(AuthContext)
+    const {dispatch: dispatchUser} = useContext(UserContext)
+
     const [nome, setNome] = useState('')
 
     useEffect(() => {
         getData('userData').then((user) => {
             getUser(user.id, user.token).then(({ data }) => {
                 setNome(data.nome)
+                dispatchUser({type: USER_ACTIONS.SET_DATA, payload:data})
             })
         })
     }, [])
@@ -35,7 +38,7 @@ const Home = (props) => {
         try {
             storeString('keepLogin', 'false')
             storeData('userData', {})
-            dispatch({ type: AUTH_ACTIONS.LOGOUT })
+            dispatchAuth({ type: AUTH_ACTIONS.LOGOUT })
         } catch (error) {
             alert('Não foi possivel dazer o login')
         }

@@ -4,4 +4,9 @@ const AUTH_ACTIONS = {
     ISLOGGED: "ISLOGGED"
 }
 
-export { AUTH_ACTIONS } 
+const USER_ACTIONS = {
+    SET_DATA: 'SET_DATA',
+    CLEAR_DATA: 'CLEAR_DATA'
+}
+
+export { AUTH_ACTIONS, USER_ACTIONS } 
