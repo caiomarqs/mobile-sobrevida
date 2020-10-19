@@ -1,4 +1,4 @@
-import { AUTH_ACTIONS } from '../context/actions'
+import { AUTH_ACTIONS } from './actions'
 
 
 const authReducer = (state, action) => {

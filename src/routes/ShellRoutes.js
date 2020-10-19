@@ -2,7 +2,8 @@ import React, { useContext, useEffect, useState } from 'react'
 
 import { StackNavigator, Stack, colorHeader } from '../components'
 import { Login, Cadastro, Initial, ForgotPass } from '../views'
-import { AuthContext, AUTH_ACTIONS } from '../context'
+import { AuthContext } from '../context'
+import { AUTH_ACTIONS } from '../reducers'
 import { getData } from '../utils'
 import { Colors } from '../styles'
 
@@ -13,11 +14,11 @@ const SheelRoutes = () => {
 
     useEffect(() => {
         getData('keepLogin').then((data) => {
-            
+
             if (data === true) {
                 dispatch({ type: AUTH_ACTIONS.LOGIN })
             }
-            
+
             setLoadingData(true)
         })
 

@@ -1,8 +1,24 @@
 import React, { useContext, useState } from 'react'
-import { Image, View, KeyboardAvoidingView, Platform, TouchableOpacity, SafeAreaView } from 'react-native'
+import {
+    Image,
+    KeyboardAvoidingView,
+    Platform,
+    SafeAreaView,
+    TouchableOpacity,
+    View
+} from 'react-native'
 
-import { AuthContext, AUTH_ACTIONS } from '../../context'
-import { SubTitleBoldText, SimpleInput, PassInput, CheckInput, PrimaryButton, HairLine, CaptionText } from '../../components'
+import {
+    CaptionText,
+    CheckInput,
+    HairLine,
+    SimpleInput,
+    SubTitleBoldText,
+    PassInput,
+    PrimaryButton
+} from '../../components'
+import { AuthContext } from '../../context'
+import { AUTH_ACTIONS } from '../../reducers'
 import { useKeyBoardIsVisible } from '../../hooks'
 import { loginValidation, storeData, storeString } from '../../utils'
 import { authValidation, authLogIn } from '../../services'

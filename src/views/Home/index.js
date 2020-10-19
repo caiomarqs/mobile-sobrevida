@@ -9,9 +9,8 @@ import {
     SubTitleBoldText,
     TitleText
 } from '../../components'
-
-import { AuthContext, AUTH_ACTIONS, UserContext, USER_ACTIONS } from '../../context'
-
+import { AuthContext, UserContext } from '../../context'
+import { AUTH_ACTIONS, USER_ACTIONS } from '../../reducers'
 import { storeString, getData, storeData } from '../../utils'
 import { getUser } from '../../services'
 
@@ -21,7 +20,7 @@ import { styles } from './styles'
 const Home = (props) => {
 
     const { dispatch: dispatchAuth } = useContext(AuthContext)
-    const {dispatch: dispatchUser} = useContext(UserContext)
+    const { dispatch: dispatchUser } = useContext(UserContext)
 
     const [nome, setNome] = useState('')
 
@@ -29,7 +28,7 @@ const Home = (props) => {
         getData('userData').then((user) => {
             getUser(user.id, user.token).then(({ data }) => {
                 setNome(data.nome)
-                dispatchUser({type: USER_ACTIONS.SET_DATA, payload:data})
+                dispatchUser({ type: USER_ACTIONS.SET_DATA, payload: data })
             })
         })
     }, [])
