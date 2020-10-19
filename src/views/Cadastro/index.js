@@ -1,31 +1,35 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { SafeAreaView, View, Platform, Alert, KeyboardAvoidingView } from 'react-native'
-import { Picker, PickerIOS } from '@react-native-community/picker'
+import { Picker } from '@react-native-community/picker'
 
-import { SimpleInput, StatusBarColor, PassInput, SubTitleBoldText, PrimaryButton, CheckInput } from '../../components'
+import {
+    CheckInput,
+    PassInput,
+    PrimaryButton,
+    SimpleInput,
+    StatusBarColor,
+    SubTitleBoldText
+} from '../../components'
 import { getEstados, getCidades, postUser } from '../../services'
-import { sortObjectArrayByKey, cadastroValidation, onlyStringMask, cpfMask } from '../../utils'
-import { styles } from './styles'
+import { cadastroValidation, cpfMask, onlyStringMask, sortObjectArrayByKey } from '../../utils'
 import { Base } from '../../styles'
 
-
+import { styles } from './styles'
 
 const Cadastro = (props) => {
 
-    //Estados dos inputs
+
     const [nome, setNome] = useState('')
     const [email, setEmail] = useState('')
-    const [senha, setSenha] = useState('')
+    const [password, setPassword] = useState('')
     const [cpf, setCpf] = useState('')
     const [selectUf, setSelectUf] = useState('')
     const [selectCidade, setSelectCidade] = useState('')
     const [terms, setTerms] = useState(false)
 
-    //Estados de carregamento
     const [loadingUfs, setLoadingUfs] = useState(false)
     const [loadingCidades, setLoadingCidades] = useState(false)
 
-    //Estados vindos da api do IBGE
     const [cidadesIBGE, setCidadesIBGE] = useState([])
     const [ufsIBGE, setUfsIBGE] = useState([])
 
@@ -59,7 +63,7 @@ const Cadastro = (props) => {
     }
 
     const handleCadastrar = () => {
-        const [test, testErrors] = cadastroValidation(nome, email, senha, cpf, selectUf, selectCidade)
+        const [test, testErrors] = cadastroValidation(nome, email, password, cpf, selectUf, selectCidade)
 
         if (!terms) {
             Alert.alert('Cadastro Inválido', 'É necessario concordar com os termos')
@@ -70,15 +74,22 @@ const Cadastro = (props) => {
             return
         }
         else {
-            const user = { nome: nome, email: email, password: senha, cpf: cpf, uf: selectUf, cidade: selectCidade }
+            const user = {
+                nome,
+                email,
+                password,
+                cpf,
+                uf: selectUf,
+                cidade: selectCidade
+            }
 
             try {
-               postUser(user)
+                postUser(user)
             }
             catch {
                 Alert.alert('Cadastro Inválido', 'Não foi possivel cadastra no servidor!')
             }
-            
+
             props.navigation.navigate('Login')
         }
     }
@@ -95,7 +106,11 @@ const Cadastro = (props) => {
                 style={styles.container}
             >
 
-                <SubTitleBoldText style={styles.title}>Faça seu cadastro para se declarar doador</SubTitleBoldText>
+                <SubTitleBoldText
+                    style={styles.title}
+                >
+                    Faça seu cadastro para se declarar doador
+                </SubTitleBoldText>
 
                 <View style={styles.inputsContainer}>
 
@@ -121,12 +136,12 @@ const Cadastro = (props) => {
 
                     <PassInput
                         forwardRef={passInputRef}
-                        onChangeText={(text) => setSenha(text)}
+                        onChangeText={(text) => setPassword(text)}
                         onSubmitEditing={() => cpfInputRef.current.focus()}
                         placeholder='Senha'
                         returnKeyType="next"
                         style={styles.cadastroInput}
-                        value={senha}
+                        value={password}
                     />
 
                     <SimpleInput

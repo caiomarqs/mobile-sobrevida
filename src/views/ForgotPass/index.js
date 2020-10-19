@@ -6,7 +6,11 @@ import { StatusBarColor } from '../../components'
 const ForgotPass = () => {
     return (
         <SafeAreaView>
-            <StatusBarColor backgroundColor='transparent' barStyle='dark-content' />
+            <StatusBarColor
+                backgroundColor='transparent'
+                barStyle='dark-content'
+            />
+            
             <Text>Esqueçeu a senha</Text>
         </SafeAreaView>
     )

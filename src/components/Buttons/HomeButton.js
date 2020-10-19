@@ -7,9 +7,24 @@ import { Base, Colors } from '../../styles'
 
 const HomeButton = ({ icon, title, style, navigation, route, ...props }) => {
     return (
-        <TouchableOpacity style={{ ...Base.homeButton, ...style }} activeOpacity={.6} onPress={() => navigation.navigate(route)}>
-            <View style={{ marginBottom: 24 }}>{icon}</View>
-            <LinksText style={{ color: Colors.vinho000 }}>{title}</LinksText>
+        <TouchableOpacity
+            activeOpacity={.6}
+            onPress={() => navigation.navigate(route)}
+            style={{
+                ...Base.homeButton,
+                ...style
+            }}
+        >
+            <View
+                style={{ marginBottom: 24 }}
+            >
+                {icon}
+            </View>
+            <LinksText
+                style={{ color: Colors.vinho000 }}
+            >
+                {title}
+            </LinksText>
         </TouchableOpacity>
     )
 }

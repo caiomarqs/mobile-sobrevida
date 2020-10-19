@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { Keyboard } from 'react-native'
 
+/**
+ * *Hook* que recupera a codição de visibidade do teclado,
+ * usado para comportamentos da tela quando o teclado é aberto ou fechado.
+ */
 const useKeyBoardIsVisible = () => {
 
     const [isKeyboardVisible, setKeyboardVisible] = useState(false)

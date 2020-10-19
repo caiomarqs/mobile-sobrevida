@@ -10,12 +10,6 @@ const Stack = createStackNavigator()
  * Propriedades de transição de telas
  */
 const HorizontalTransition = {
-    gestureDirection: 'horizontal',
-    transitionSpec: {
-        open: TransitionSpecs.TransitionIOSSpec,
-        close: TransitionSpecs.TransitionIOSSpec,
-    },
-    headerStyleInterpolator: HeaderStyleInterpolators.forFade,
     cardStyleInterpolator: ({ current, next, layouts }) => {
         return {
             cardStyle: {
@@ -44,20 +38,32 @@ const HorizontalTransition = {
             },
         }
     },
+
+    gestureDirection: 'horizontal',
+    headerStyleInterpolator: HeaderStyleInterpolators.forFade,
+
+    transitionSpec: {
+        open: TransitionSpecs.TransitionIOSSpec,
+        close: TransitionSpecs.TransitionIOSSpec,
+    }
 }
 
 const whiteHeader = {
-    headerBackImage: () => (<LeftArrow fill={Base.whiteNavigator.contentColor} />),
+    headerBackImage: () => (
+        <LeftArrow fill={Base.whiteNavigator.contentColor} />
+    ),
     headerStyle: {
         backgroundColor: Base.whiteNavigator.backgroundColor,
-        elevation: 0, // remove shadow on Android
-        shadowOpacity: 0, //remove on IOS
+        elevation: 0, // remove sombra no Android
+        shadowOpacity: 0, //remove no IOS
     },
     headerTintColor: Base.whiteNavigator.contentColor,
 }
 
 const colorHeader = {
-    headerBackImage: () => (<LeftArrow fill={Base.colorNavigator.contentColor} />),
+    headerBackImage: () => (
+        <LeftArrow fill={Base.colorNavigator.contentColor} />
+    ),
     headerStyle: {
         backgroundColor: Base.colorNavigator.backgroundColor,
         elevation: 0,
@@ -77,14 +83,14 @@ const StackNavigator = (props) => {
     return (
         <Stack.Navigator
             screenOptions={{
+                cardOverlayEnabled: true,
+                cardStyle: {
+                    backgroundColor: Colors.branco000
+                },
+                gestureEnabled: true,
                 headerTitleStyle: {
                     ...Fonts.sub2,
                     alignSelf: 'flex-end',
-                },
-                cardOverlayEnabled: true,
-                gestureEnabled: true,
-                cardStyle: {
-                    backgroundColor: Colors.branco000
                 },
                 ...whiteHeader,
                 ...HorizontalTransition

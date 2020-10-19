@@ -23,14 +23,15 @@ const HomeButtonsContainer = ({navigation, ...props }) => {
                             key={index}
                             title={title}
                             icon={icon}
+                            navigation={navigation}
+                            route={route}
+                            
                             //Se for o ultimo botão ocupa toda a largura da tela
                             style={{
                                 width: index === homeButtonsProps.length - 1 ? '100%' : (Widths.WINDOW_WIDTH - 48) / 2,
                                 marginRight: index === 0 ? 16 : 0,
                                 marginBottom: 16
-                            }}
-                            route={route}
-                            navigation={navigation}
+                            }}   
                         />
                     )
                 })

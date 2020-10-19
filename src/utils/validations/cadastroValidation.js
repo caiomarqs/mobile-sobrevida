@@ -1,8 +1,19 @@
 const regexEmail = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+?(\.[a-z]+)?$/i;
-
-//Minimo 4 maximo 8, com maiscula
 const regexPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,}$/;
 
+
+/**
+ * Metodode de validação de cadastro, 
+ * verifica se nome, email, cpf uf e cidade são validos e se a senha possuiu os requisitos: 
+ *  - minuscula;
+ *  - maiscula;
+ *  - caractere especial;
+ *  - numero;
+ *  - acima de 4 caracteres.
+ * 
+ * @param {string} email 
+ * @param {string} senha
+ */
 const cadastroValidation = (nome, email, senha, cpf, uf, cidade) => {
     const thisErrors = []
 
@@ -35,9 +46,9 @@ const cadastroValidation = (nome, email, senha, cpf, uf, cidade) => {
 
 
 /**
- * Teste se o cpf é verdadeiro
- * return True -> Verdadeiro
- * @param {*} strCpf 
+ * Teste da veracidade do cpf
+ * 
+ * @param {string} strCpf 
  */
 const validateCpf = (strCpf) => {
 

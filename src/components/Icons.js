@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Svg, Path, Rect, Defs, G, ClipPath, Mask } from 'react-native-svg'
+import { Svg, Path, Rect, Defs, G, ClipPath } from 'react-native-svg'
 
 const SobrevidaLogoFull = ({ fill, ...props }) => {
     return (

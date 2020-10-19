@@ -1,34 +1,37 @@
-import React, {useContext} from 'react'
+import React, { useContext } from 'react'
 import { SafeAreaView, View } from 'react-native'
 
 import { ConfigButton } from '../../components'
-import {UserContext} from '../../context'
+import { UserContext } from '../../context'
 
-import {styles} from './styles'
+import { styles } from './styles'
 
 const Configuracoes = (props) => {
 
-    const {userState} = useContext(UserContext)
+    const { userState } = useContext(UserContext)
 
     return (
         <SafeAreaView>
             <View style={styles.container}>
+
                 <ConfigButton
-                title="Nome da conta"
-                content={`${userState.user.nome} ${userState.user.sobreNome}`}
-                isAction={false}
+                    content={`${userState.user.nome} ${userState.user.sobreNome}`}
+                    isAction={false}
+                    title="Nome da conta"
                 />
 
-                <ConfigButton 
-                title="Alterar senha"
-                content="*********" 
-                style={styles.button}
-                onPress={() => props.navigation.navigate('ChangePass')} />
+                <ConfigButton
+                    content="*********"
+                    onPress={() => props.navigation.navigate('ChangePass')}
+                    style={styles.button}
+                    title="Alterar senha"
+                />
 
-                <ConfigButton 
-                title="Deletar conta"
-                content="Delete sua conta do SobreVida" 
-                onPress={() => props.navigation.navigate('DeleteAccount')} />
+                <ConfigButton
+                    content="Delete sua conta do SobreVida"
+                    onPress={() => props.navigation.navigate('DeleteAccount')}
+                    title="Deletar conta"
+                />
 
             </View>
         </SafeAreaView>

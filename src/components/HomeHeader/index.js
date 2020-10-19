@@ -11,8 +11,11 @@ const HomeHeader = ({ logOut, props }) => {
     return (
         <View style={styles.headerContainer}>
             <SobreVidaHeaderLogo fill={Colors.preto000} />
-            <TouchableOpacity onPress={logOut} activeOpacity={.75}>
-                <SubTitleBoldText style={styles.logOutContainer}>Sair</SubTitleBoldText>
+            <TouchableOpacity
+                activeOpacity={.75}
+                onPress={logOut}
+            >
+                <SubTitleBoldText style={styles.logOutContainer}>Sair</SubTitleBoldText>    
             </TouchableOpacity>
         </View>
     )

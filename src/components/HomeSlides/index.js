@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { ScrollView, View, Image, Animated } from 'react-native'
+import React, { useState } from 'react'
+import { Animated, Image, ScrollView, View } from 'react-native'
 
 import { CaptionLigthText, SlideTitleText } from '../Texts'
 import { Widths, Colors } from '../../styles'

@@ -1,8 +1,19 @@
+/**
+ * Metódo de mascarento de texto, 
+ * aceitando letras e caracteres de acentuação
+ * 
+ * @param {string} text
+ */
 const onlyStringMask = (text) => {
     let regexValue = text.replace(/[^a-zA-ZáàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]/g, "")
     return regexValue
 }
 
+/**
+ * Metedo de mascaramento para o cpf
+ * 
+ * @param {string} text 
+ */
 const cpfMask = (text) => {
     let regexValue = text
         .replace(/\D/g, '')
