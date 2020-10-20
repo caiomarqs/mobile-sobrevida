@@ -1,6 +1,7 @@
 export * from './SubTitleBoldText'
 export * from './CaptionText'
 export * from './CaptionLigthText'
+export * from './CaptionBoldText'
 export * from './OverLineText'
 export * from './ButtonText'
 export * from './TitleText'

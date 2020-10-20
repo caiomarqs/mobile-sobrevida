@@ -21,6 +21,10 @@ const cadastroValidation = (nome, email, senha, cpf, uf, cidade) => {
         thisErrors.push('Nome inválido')
     }
 
+    if(nome.substr(nome.indexOf(' ') + 1) === nome || nome.substr(nome.indexOf(' ') + 1) === ''){
+        thisErrors.push('Insira o nome completo')
+    }
+
     if (!regexEmail.test(email)) {
         thisErrors.push('Email inválido')
     }

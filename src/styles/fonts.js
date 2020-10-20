@@ -118,6 +118,11 @@ const Fonts = {
         fontSize: FontSize.captionFontSize,
         lineHeight: LineHeight.captionLineHeight,
     },
+    caption3: {
+        fontFamily: "SFUIDisplay-Bold",
+        fontSize: FontSize.captionFontSize,
+        lineHeight: LineHeight.captionLineHeight,
+    },
     overline: {
         fontFamily: "SFUIDisplay-Light",
         fontSize: FontSize.overlineFontSize,

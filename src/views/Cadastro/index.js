@@ -10,7 +10,7 @@ import {
     StatusBarColor,
     SubTitleBoldText
 } from '../../components'
-import { getEstados, getCidades, postUser } from '../../services'
+import { getEstados, getCidades, postUser, authValidation } from '../../services'
 import { cadastroValidation, cpfMask, onlyStringMask, sortObjectArrayByKey } from '../../utils'
 import { Base } from '../../styles'
 
@@ -83,14 +83,22 @@ const Cadastro = (props) => {
                 cidade: selectCidade
             }
 
-            try {
-                postUser(user)
-            }
-            catch {
-                Alert.alert('Cadastro Inválido', 'Não foi possivel cadastra no servidor!')
-            }
+            authValidation(email, password).then(({ data }) => {
+                
+                if (!data.email) {
+                    postUser(user).then(() => {
+                        props.navigation.navigate('Login')
 
-            props.navigation.navigate('Login')
+                    }).catch(err => {
+                        Alert.alert('Cadastro Inválido', 'Não foi possivel cadastra no servidor!')
+                        console.log(err)
+                    })
+                }
+                else{
+                    Alert.alert('Cadastro Inválido', 'Email já cadastrado') 
+                }
+
+            })
         }
     }
 

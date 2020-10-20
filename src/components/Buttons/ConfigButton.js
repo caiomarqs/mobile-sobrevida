@@ -36,6 +36,7 @@ const ConfigButton = ({ title, content, isAction = true, style, onPress, ...prop
             </TouchableOpacity>
         )
     }
+    
     else {
         return (
             <View style={styles.container}>

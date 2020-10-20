@@ -39,7 +39,7 @@ const postUser = async (user) => {
 
 const putUser = async (id, user, token) => {
     return axios({
-        baseURL: process.env.REACT_APP_SERVER_URL,
+        baseURL: REACT_APP_SERVER_URL,
         method: 'PUT',
         url: `/doador/${id}`,
         headers: {
@@ -67,7 +67,7 @@ const putUser = async (id, user, token) => {
 
 const patchPasswordUser = async (id, password, token) => {
     return axios({
-        baseURL: process.env.REACT_APP_SERVER_URL,
+        baseURL: REACT_APP_SERVER_URL,
         method: 'PATCH',
         url: `/doador/${id}`,
         headers: {
@@ -83,7 +83,7 @@ const patchPasswordUser = async (id, password, token) => {
 
 const deleteUser = async (id, token) => {
     return axios({
-        baseURL: process.env.REACT_APP_SERVER_URL,
+        baseURL: REACT_APP_SERVER_URL,
         method: 'DELETE',
         url: `/doador/${id}`,
         headers: {
