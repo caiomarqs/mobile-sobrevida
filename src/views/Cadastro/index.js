@@ -87,8 +87,8 @@ const Cadastro = (props) => {
                 
                 if (!data.email) {
                     postUser(user).then(() => {
+                        Alert.alert('Sucesso', 'Cadastrado com sucesso!')
                         props.navigation.navigate('Login')
-
                     }).catch(err => {
                         Alert.alert('Cadastro Inválido', 'Não foi possivel cadastra no servidor!')
                         console.log(err)

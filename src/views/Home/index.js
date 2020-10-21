@@ -30,6 +30,8 @@ const Home = (props) => {
                 setNome(data.nome)
                 dispatchUser({ type: USER_ACTIONS.SET_DATA, payload: data })
             })
+        }).catch(err => {
+            handleLogOut()
         })
     }, [])
 
