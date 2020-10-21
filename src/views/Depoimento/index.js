@@ -1,12 +1,59 @@
-import React from 'react'
-import { SafeAreaView, Text } from 'react-native'
+import React, { useContext, useEffect } from 'react'
+import { SafeAreaView, View } from 'react-native'
 
-const Depoimento = () => {
+import { SubTitleBoldText, PrimaryButton, TextArea, ModalNavigator, ModalStack, CloseIcon } from '../../components'
+import { UserContext } from '../../context'
+import { DepoimentoModal } from '../Modais'
+
+import { styles } from './styles'
+
+
+const DepoimentoStackScreen = (props) => {
+
+    const { userState } = useContext(UserContext)
+
+
     return (
-        <SafeAreaView>
-            <Text>Depimento</Text>
+        <ModalNavigator>
+            {
+                userState.user.depoimento
+                    ?
+                    <ModalStack.Screen
+                        name="Depoimento"
+                        component={Depoimento}
+                    />
+                    :
+                    <>
+                        <ModalStack.Screen
+                            name="Modal"
+                            component={DepoimentoModal}
+                            options={{
+                                title: "",
+                                headerBackImage: () => <CloseIcon />
+                            }}
+                        />
+                        <ModalStack.Screen
+                            name="Depoimento"
+                            component={Depoimento}
+                        />
+                    </>
+            }
+
+        </ModalNavigator>
+    )
+}
+
+const Depoimento = (props) => {
+
+    return (
+        <SafeAreaView style={styles.container}>
+            <SubTitleBoldText style={styles.title}>Lorem Ipsum</SubTitleBoldText>
+            <TextArea />
+            <View style={styles.buttonContainer}>
+                <PrimaryButton title="Salvar" style={styles.button} />
+            </View>
         </SafeAreaView>
     )
 }
 
-export { Depoimento }
+export { DepoimentoStackScreen }

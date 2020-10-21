@@ -53,6 +53,12 @@ const Base = {
         borderRadius: 8,
         alignItems: 'center',
         justifyContent: 'center'
+    },
+    textArea: {
+        borderWidth: .8,
+        borderColor: Colors.cinza200,
+        paddingHorizontal: 8,
+        borderRadius: 4
     }
 }
 

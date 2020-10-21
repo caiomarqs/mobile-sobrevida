@@ -53,7 +53,7 @@ const DeleteAccount = () => {
                 <SubTitleBoldText style={styles.title}>
                     Delete sua conta
                 </SubTitleBoldText>
-                <View style={{}}>
+                <View>
                     <CaptionText style={styles.subTtitle}>
                         Respeitamos os direitos indviduias de qualquer pessoa, para confirmar basta digitar o seu email como esta a baixo
                     </CaptionText>

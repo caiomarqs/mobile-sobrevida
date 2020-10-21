@@ -1,7 +1,47 @@
-import React from 'react'
+import React, { useEffect, useContext } from 'react'
 import { SafeAreaView, Text } from 'react-native'
 
-const Familiares = () => {
+import { ModalNavigator, ModalStack, CloseIcon } from '../../components'
+import { UserContext } from '../../context'
+import { FamiliaresModal } from '../Modais'
+
+const FamiliaresStackScreen = (props) => {
+
+    const { userState } = useContext(UserContext)
+
+    return (
+        <ModalNavigator>
+
+            {
+
+                !userState.user.familiares.length === 0
+                    ?
+                    <ModalStack.Screen
+                        name="Familiares"
+                        component={Familiares}
+                    />
+                    :
+                    <>
+                        <ModalStack.Screen
+                            name="Modal"
+                            component={FamiliaresModal}
+                            options={{
+                                title: "",
+                                headerBackImage: () => <CloseIcon />
+                            }}
+                        />
+                        <ModalStack.Screen
+                            name="Familiares"
+                            component={Familiares}
+                        />
+                    </>
+            }
+        </ModalNavigator>
+    )
+}
+
+const Familiares = (props) => {
+
     return (
         <SafeAreaView>
             <Text>Familiares</Text>
@@ -9,4 +49,4 @@ const Familiares = () => {
     )
 }
 
-export { Familiares }
+export { FamiliaresStackScreen }

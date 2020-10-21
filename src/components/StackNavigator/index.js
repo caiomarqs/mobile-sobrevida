@@ -2,7 +2,7 @@ import React from 'react'
 import { createStackNavigator, TransitionSpecs, HeaderStyleInterpolators } from '@react-navigation/stack'
 
 import { Fonts, Base, Colors } from '../../styles'
-import { LeftArrow } from '../Icons'
+import { LeftArrow, CloseIcon } from '../Icons'
 
 const Stack = createStackNavigator()
 
@@ -72,6 +72,18 @@ const colorHeader = {
     headerTintColor: Base.colorNavigator.contentColor,
 }
 
+const modalHeader = {
+    headerBackImage: () => (
+        <CloseIcon />
+    ),
+    headerStyle: {
+        backgroundColor: Base.whiteNavigator.backgroundColor,
+        elevation: 0, // remove sombra no Android
+        shadowOpacity: 0, //remove no IOS
+    },
+    headerTintColor: Base.whiteNavigator.contentColor
+}
+
 
 /**
  * Esse *StackNavigator* tem as configurações de navegação da aplcaicação,
@@ -102,4 +114,4 @@ const StackNavigator = (props) => {
     )
 }
 
-export { StackNavigator, Stack, whiteHeader, colorHeader }
+export { StackNavigator, Stack, whiteHeader, colorHeader, modalHeader }

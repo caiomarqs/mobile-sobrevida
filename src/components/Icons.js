@@ -104,4 +104,13 @@ const SimpleArrow = (props) => {
 
 }
 
-export { SobrevidaLogoFull, LeftArrow, SobreVidaHeaderLogo, FamilyIcon, DocumentIcon, ConfigIcon, SimpleArrow }
+const CloseIcon = (props) => {
+    return (
+        <Svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+            <Path d="M5.89988 5.5C5.66936 5.5 5.43884 5.58768 5.2637 5.76414C4.9121 6.11574 4.9121 6.68577 5.2637 7.03737L20.9626 22.7363C21.3142 23.0879 21.8843 23.0879 22.2359 22.7363C22.5875 22.3847 22.5875 21.8147 22.2359 21.4628L6.53715 5.76414C6.36069 5.58878 6.13017 5.5 5.89988 5.5V5.5Z" fill="black" />
+            <Path d="M21.5999 5.5C21.3694 5.5 21.1391 5.58768 20.9637 5.76414L5.2637 21.4628C4.9121 21.8147 4.9121 22.3847 5.2637 22.7363C5.6153 23.0879 6.18533 23.0879 6.53715 22.7363L22.2359 7.03737C22.5875 6.68577 22.5875 6.11574 22.2359 5.76414C22.0594 5.58878 21.8291 5.5 21.5999 5.5Z" fill="black" />
+        </Svg>
+    )
+}
+
+export { SobrevidaLogoFull, LeftArrow, SobreVidaHeaderLogo, FamilyIcon, DocumentIcon, ConfigIcon, SimpleArrow, CloseIcon }
