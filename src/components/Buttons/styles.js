@@ -1,6 +1,6 @@
-import {StyleSheet} from 'react-native'
+import { StyleSheet } from 'react-native'
 
-import {Colors} from '../../styles'
+import { Colors } from '../../styles'
 
 const styles = StyleSheet.create({
     container: {
@@ -18,8 +18,8 @@ const styles = StyleSheet.create({
         color: Colors.vinho000
     },
     contentContainer: {
-        flex:1
+        flex: 1
     }
 })
 
-export {styles}
+export { styles }

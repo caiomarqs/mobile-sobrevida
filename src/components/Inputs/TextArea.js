@@ -3,11 +3,10 @@ import { TextInput } from 'react-native'
 
 import { Base } from '../../styles'
 
-const TextArea = ({style, onChangeText = () => {}}) => {
+const TextArea = ({ style, placeholder = '', forwardRef, onChangeText = () => { }, onEndEditing = () => { }, ...props }) => {
     return (
         <TextInput
             maxLength={200}
-            numberOfLines={4}
             multiline
             textAlignVertical="top"
             style={{
@@ -15,6 +14,10 @@ const TextArea = ({style, onChangeText = () => {}}) => {
                 ...style
             }}
             onChangeText={onChangeText}
+            placeholder={placeholder}
+            ref={forwardRef}
+            onEndEditing={onEndEditing}
+            {...props}
         />
     )
 }

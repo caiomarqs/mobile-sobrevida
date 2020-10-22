@@ -1,26 +1,32 @@
-import React, { useContext, useEffect } from 'react'
-import { SafeAreaView, View } from 'react-native'
+import React, { useContext, useDebugValue, useEffect } from 'react'
 
-import { SubTitleBoldText, PrimaryButton, TextArea, ModalNavigator, ModalStack, CloseIcon } from '../../components'
+import { ModalNavigator, ModalStack, CloseIcon } from '../../components'
 import { UserContext } from '../../context'
-import { DepoimentoModal } from '../Modais'
 
-import { styles } from './styles'
+import { DepoimentoModal } from '../ModaisView'
 
+import { Depoimento } from './Depoimento'
 
 const DepoimentoStackScreen = (props) => {
 
     const { userState } = useContext(UserContext)
 
+    useEffect(() => {
+        console.log(userState.user.depoimento.depoimento.length)
+    }, [])
+    
 
     return (
         <ModalNavigator>
             {
-                userState.user.depoimento
+                (userState.user.depoimento && userState.user.depoimento.depoimento !== '')
                     ?
                     <ModalStack.Screen
                         name="Depoimento"
                         component={Depoimento}
+                        options={{
+                            headerTransparent: true
+                        }}
                     />
                     :
                     <>
@@ -29,7 +35,8 @@ const DepoimentoStackScreen = (props) => {
                             component={DepoimentoModal}
                             options={{
                                 title: "",
-                                headerBackImage: () => <CloseIcon />
+                                headerBackImage: () => <CloseIcon />,
+                                headerTransparent: true
                             }}
                         />
                         <ModalStack.Screen
@@ -38,21 +45,7 @@ const DepoimentoStackScreen = (props) => {
                         />
                     </>
             }
-
         </ModalNavigator>
-    )
-}
-
-const Depoimento = (props) => {
-
-    return (
-        <SafeAreaView style={styles.container}>
-            <SubTitleBoldText style={styles.title}>Lorem Ipsum</SubTitleBoldText>
-            <TextArea />
-            <View style={styles.buttonContainer}>
-                <PrimaryButton title="Salvar" style={styles.button} />
-            </View>
-        </SafeAreaView>
     )
 }
 

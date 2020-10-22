@@ -34,6 +34,14 @@ const Base = {
         elevation: .8,
         shadowOpacity: .8
     },
+    outLineButton: {
+        height: 48,
+        borderColor: Colors.cinza000,
+        borderWidth: .8,
+        borderRadius: 4,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
     checkInput: {
         display: 'flex',
         flexDirection: 'row',
@@ -43,7 +51,7 @@ const Base = {
     checkInputCheck: {
         height: 16,
         width: 16,
-        backgroundColor: Colors.cinza000,
+        backgroundColor: Colors.cinza200,
         marginRight: 8,
         borderRadius: 4
     },

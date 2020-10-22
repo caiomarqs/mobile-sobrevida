@@ -3,7 +3,8 @@ import { SafeAreaView, Text } from 'react-native'
 
 import { ModalNavigator, ModalStack, CloseIcon } from '../../components'
 import { UserContext } from '../../context'
-import { FamiliaresModal } from '../Modais'
+import { Colors } from '../../styles'
+import { FamiliaresModal } from '../ModaisView'
 
 const FamiliaresStackScreen = (props) => {
 
@@ -14,7 +15,7 @@ const FamiliaresStackScreen = (props) => {
 
             {
 
-                !userState.user.familiares.length === 0
+                userState.user.familiares.length > 0
                     ?
                     <ModalStack.Screen
                         name="Familiares"
@@ -28,6 +29,7 @@ const FamiliaresStackScreen = (props) => {
                             options={{
                                 title: "",
                                 headerBackImage: () => <CloseIcon />
+
                             }}
                         />
                         <ModalStack.Screen
