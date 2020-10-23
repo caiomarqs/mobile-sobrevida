@@ -10,16 +10,12 @@ import { Depoimento } from './Depoimento'
 const DepoimentoStackScreen = (props) => {
 
     const { userState } = useContext(UserContext)
-
-    useEffect(() => {
-        console.log(userState.user.depoimento.depoimento.length)
-    }, [])
     
 
     return (
         <ModalNavigator>
             {
-                (userState.user.depoimento && userState.user.depoimento.depoimento !== '')
+                userState.user.depoimento
                     ?
                     <ModalStack.Screen
                         name="Depoimento"

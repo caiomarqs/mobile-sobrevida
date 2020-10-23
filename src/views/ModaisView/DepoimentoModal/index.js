@@ -5,7 +5,7 @@ import HandImage from '../../../assets/img/handIlustration.png'
 import { CaptionText, TitleText, Modal, PrimaryButton, TextButton, TextArea, } from '../../../components'
 import { UserContext } from '../../../context'
 import { USER_ACTIONS } from '../../../reducers'
-import { putUser } from '../../../services'
+import { postDepoimentoUser } from '../../../services'
 import { getData } from '../../../utils'
 
 import { styles } from './styles'
@@ -19,12 +19,9 @@ const DepoimentoModal = (props) => {
 
     const handleCadastrarDepoimento = () => {
 
-        const user = { ...userState.user, depoimento: { depoimento: depoimento, pathToFile: '' } }
-
         getData('userData').then((cache) => {
-
-            putUser(cache.id, user, cache.token).then(({ data }) => {
-                dispatch({ type: USER_ACTIONS.SET_DATA, payload: data })
+            postDepoimentoUser(cache.id, depoimento, cache.token).then(({ data }) => {
+                dispatch({ type: USER_ACTIONS.SET_DATA, payload: { ...userState.user, depoimento: data } })
                 props.navigation.navigate('Depoimento')
 
             }).catch(_ =>
@@ -34,7 +31,6 @@ const DepoimentoModal = (props) => {
         }).catch(_ =>
             alert('não foi possivel cadastra o depoimento para o seu usuário')
         )
-
     }
 
     return (

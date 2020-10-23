@@ -5,7 +5,7 @@ import { CaptionText, PointsIcon, Modal, TitleText, OutLineButton, TextArea, Pri
 import { UserContext } from '../../context'
 import { USER_ACTIONS } from '../../reducers'
 import { Colors } from '../../styles'
-import { putUser } from '../../services'
+import { putDepoimentoUser, deleteDepoimentoUser } from '../../services'
 import { getData } from '../../utils'
 import document from '../../assets/img/documentIlustration.png'
 
@@ -27,17 +27,12 @@ const Depoimento = (props) => {
     }
 
     const handleSalvarDepoimento = () => {
-
-        const user = { ...userState.user, depoimento: { depoimento: depoimento, pathToFile: '' } }
-
         if (depoimento !== '') {
-            
             getData('userData').then((cache) => {
-                putUser(cache.id, user, cache.token).then(({ data }) => {
-                    dispatch({ type: USER_ACTIONS.SET_DATA, payload: data })
+                putDepoimentoUser(cache.id, depoimento, cache.token).then(({ data }) => {
+                    dispatch({ type: USER_ACTIONS.SET_DATA, payload: { ...userState.user, depoimento: data } })
                     setDepoimento('')
                     setModalEdit(false)
-
                 }).catch(_ =>
                     alert('não foi possivel salvar o depoimento no servidor')
                 )
@@ -49,25 +44,21 @@ const Depoimento = (props) => {
         } else {
             alert('O depoimento não pode estar vazio')
         }
-
-
     }
 
     const handleExcluirDepoimento = () => {
-
-        const user = { ...userState.user, depoimento: { depoimento: '', pathToFile: '' } }
-
         getData('userData').then((cache) => {
-            putUser(cache.id, user, cache.token).then(({ data }) => {
-                dispatch({ type: USER_ACTIONS.SET_DATA, payload: data })
+            
+            deleteDepoimentoUser(cache.id, cache.token).then(_ => {
+                dispatch({ type: USER_ACTIONS.SET_DATA, payload: { ...userState.user, depoimento: null } })
                 props.navigation.navigate('Home')
 
             }).catch(_ =>
-                alert('não foi possivel excluir o depoimento no servidor')
+                alert('Não foi possivel excluir o depoimento no servidor')
             )
 
         }).catch(_ =>
-            alert('não foi possivel excluir o depoimento para o seu usuário')
+            alert('Não foi possivel excluir o depoimento para o seu usuário')
         )
     }
 
@@ -87,7 +78,7 @@ const Depoimento = (props) => {
                 <View style={styles.depoimentoContainer} >
 
                     <CaptionText style={styles.depoimentoText} >
-                        {userState.user.depoimento.depoimento}
+                        {userState.user.depoimento ? userState.user.depoimento.depoimento : ''}
                     </CaptionText>
                     <TouchableOpacity
                         activeOpacity={.6}
