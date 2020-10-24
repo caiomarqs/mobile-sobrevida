@@ -11,7 +11,7 @@ const FontSize = {
     body2FontSize: 17,
     btnFontSize: 12,
     linksFontSize: 14,
-    captionFontSize: 12,
+    captionFontSize: 14,
     overlineFontSize: 10,
 }
 

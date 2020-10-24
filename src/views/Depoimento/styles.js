@@ -43,6 +43,17 @@ const styles = StyleSheet.create({
     },
     modalButton: {
         marginBottom: 16
+    },
+    modalButtonsContainer: {
+        flexDirection: 'row'
+    },
+    modalOutLineButton1: {
+        flex: 1,
+        marginRight: 6
+    },
+    modalOutLineButton2: {
+        flex: 1,
+        marginLeft: 6
     }
 })
 

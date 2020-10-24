@@ -1,6 +1,6 @@
-import React, { useContext, useDebugValue, useEffect } from 'react'
+import React, { useContext } from 'react'
 
-import { ModalNavigator, ModalStack, CloseIcon } from '../../components'
+import { CloseIcon, ModalNavigator, ModalStack } from '../../components'
 import { UserContext } from '../../context'
 
 import { DepoimentoModal } from '../ModaisView'
@@ -10,7 +10,7 @@ import { Depoimento } from './Depoimento'
 const DepoimentoStackScreen = (props) => {
 
     const { userState } = useContext(UserContext)
-    
+
 
     return (
         <ModalNavigator>

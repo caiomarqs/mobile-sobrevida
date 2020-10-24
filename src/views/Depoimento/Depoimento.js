@@ -1,7 +1,21 @@
 import React, { useContext, useState } from 'react'
-import { Image, SafeAreaView, TouchableOpacity, View, Keyboard } from 'react-native'
+import {
+    Image,
+    Keyboard,
+    SafeAreaView,
+    TouchableOpacity,
+    View
+} from 'react-native'
 
-import { CaptionText, PointsIcon, Modal, TitleText, OutLineButton, TextArea, PrimaryButton } from '../../components'
+import {
+    CaptionText,
+    Modal,
+    TextArea,
+    TitleText,
+    OutLineButton,
+    PrimaryButton,
+    PointsIcon
+} from '../../components'
 import { UserContext } from '../../context'
 import { USER_ACTIONS } from '../../reducers'
 import { Colors } from '../../styles'
@@ -30,15 +44,21 @@ const Depoimento = (props) => {
         if (depoimento !== '') {
             getData('userData').then((cache) => {
                 putDepoimentoUser(cache.id, depoimento, cache.token).then(({ data }) => {
-                    dispatch({ type: USER_ACTIONS.SET_DATA, payload: { ...userState.user, depoimento: data } })
+
+                    dispatch({
+                        type: USER_ACTIONS.SET_DATA,
+                        payload: { ...userState.user, depoimento: data }
+                    })
+
                     setDepoimento('')
                     setModalEdit(false)
+
                 }).catch(_ =>
-                    alert('não foi possivel salvar o depoimento no servidor')
+                    alert('Não foi possivel salvar o depoimento no servidor')
                 )
 
             }).catch(_ =>
-                alert('não foi possivel salvar o depoimento para o seu usuário')
+                alert('Não foi possivel salvar o depoimento para o seu usuário')
             )
 
         } else {
@@ -48,9 +68,12 @@ const Depoimento = (props) => {
 
     const handleExcluirDepoimento = () => {
         getData('userData').then((cache) => {
-            
+
             deleteDepoimentoUser(cache.id, cache.token).then(_ => {
-                dispatch({ type: USER_ACTIONS.SET_DATA, payload: { ...userState.user, depoimento: null } })
+                dispatch({
+                    type: USER_ACTIONS.SET_DATA,
+                    payload: { ...userState.user, depoimento: null }
+                })
                 props.navigation.navigate('Home')
 
             }).catch(_ =>
@@ -92,38 +115,51 @@ const Depoimento = (props) => {
 
             <Modal show={modal} close={() => setModal(false)} height='30%' >
                 <View style={styles.modal}>
-                    <TitleText style={styles.modalTitle}>Opções Do Depoimento</TitleText>
-                    <View style={{ flexDirection: 'row' }}>
-                        <OutLineButton title="Editar" style={{ flex: 1, marginRight: 6 }} onPress={() => handleEdit()} />
-                        <OutLineButton title="Excluir" style={{ flex: 1, marginLeft: 6 }} onPress={() => handleExcluirDepoimento()} />
+
+                    <TitleText style={styles.modalTitle}>
+                        Opções Do Depoimento
+                    </TitleText>
+
+                    <View style={styles.modalButtonsContainer}>
+                        <OutLineButton
+                            onPress={() => handleEdit()}
+                            style={styles.modalOutLineButton1}
+                            title="Editar"
+                        />
+                        <OutLineButton
+                            onPress={() => handleExcluirDepoimento()}
+                            style={styles.modalOutLineButton2}
+                            title="Excluir"
+                        />
                     </View>
                 </View>
-
             </Modal>
 
             <Modal
-                show={modalEdit}
                 close={() => setModalEdit(false)}
+                show={modalEdit}
             >
                 <View style={styles.modal}>
-                    <TitleText
-                        style={styles.modalTitle}
-                    >
+
+                    <TitleText style={styles.modalTitle}>
                         Edite as palavras para seus familiares
                     </TitleText>
                     <TextArea
+                        onChangeText={(text) => setDepoimento(text)}
+                        onEndEditing={() => Keyboard.dismiss()}
                         style={styles.textArea}
                         placeholder='Digite a menssagem...'
-                        onEndEditing={() => Keyboard.dismiss()}
                         value={depoimento}
-                        onChangeText={(text) => setDepoimento(text)}
                     />
+
                 </View>
+
                 <PrimaryButton
+                    onPress={() => handleSalvarDepoimento()}
                     title="Salvar"
                     style={styles.modalButton}
-                    onPress={() => handleSalvarDepoimento()}
                 />
+
             </Modal>
         </SafeAreaView>
     )
