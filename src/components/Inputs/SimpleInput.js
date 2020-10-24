@@ -24,7 +24,6 @@ const SimpleInput = ({
                 ...style
             }}
             value={value}
-
             {...props}
         />
     )

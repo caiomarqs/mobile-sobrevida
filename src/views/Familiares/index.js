@@ -28,7 +28,8 @@ const FamiliaresStackScreen = (props) => {
                             component={FamiliaresModal}
                             options={{
                                 title: "",
-                                headerBackImage: () => <CloseIcon />
+                                headerBackImage: () => <CloseIcon />,
+                                headerTransparent: true
 
                             }}
                         />

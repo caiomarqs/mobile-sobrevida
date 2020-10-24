@@ -24,5 +24,31 @@ const cpfMask = (text) => {
     return regexValue
 }
 
+/**
+ * Metodo para mascaramento de contatos
+ * 
+ * @param {string} value 
+ */
+const contatoMask = (value) => {
 
-export { onlyStringMask, cpfMask }
+    let regexValue;
+
+    if (value.length > 14) {
+        regexValue = value
+            .replace(/\D/g, "")                 //Remove tudo o que não é dígito
+            .replace(/^(\d{2})(\d{1})(\d)/g, "($1) $2 $3") //Parenteses
+            .replace(/(\d{4})(\d)/, "$1-$2") //ifem em 5
+    }
+    else {
+        regexValue = value
+            .replace(/\D/g, "")                 //Remove tudo o que não é dígito
+            .replace(/^(\d\d)(\d)/g, "($1) $2")  //Parenteses
+            .replace(/(\d{4})(\d)/, "$1-$2") //ifem em 5
+    }
+
+
+    return regexValue
+}
+
+
+export { onlyStringMask, cpfMask, contatoMask }
