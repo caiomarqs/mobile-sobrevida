@@ -9,6 +9,7 @@ import {
 
 import {
     CaptionText,
+    ContentEditableButton,
     Modal,
     TextArea,
     TitleText,
@@ -98,19 +99,17 @@ const Depoimento = (props) => {
                 <CaptionText style={styles.title} >
                     Veja e edite o seu depoimento.
                 </CaptionText>
-                <View style={styles.depoimentoContainer} >
 
+                <ContentEditableButton onPress={() => setModal(true)}>
                     <CaptionText style={styles.depoimentoText} >
-                        {userState.user.depoimento ? userState.user.depoimento.depoimento : ''}
+                        {
+                            userState.user.depoimento
+                                ? userState.user.depoimento.depoimento
+                                : ''
+                        }
                     </CaptionText>
-                    <TouchableOpacity
-                        activeOpacity={.6}
-                        onPress={() => setModal(true)}
-                    >
-                        <PointsIcon fill={Colors.vinho000} />
-                    </TouchableOpacity>
+                </ContentEditableButton>
 
-                </View>
             </View>
 
             <Modal show={modal} close={() => setModal(false)} height='30%' >

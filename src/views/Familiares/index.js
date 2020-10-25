@@ -1,25 +1,43 @@
-import React, { useEffect, useContext } from 'react'
-import { SafeAreaView, Text } from 'react-native'
+import React, { useContext, useDebugValue, useEffect } from 'react'
 
-import { ModalNavigator, ModalStack, CloseIcon } from '../../components'
-import { UserContext } from '../../context'
-import { Colors } from '../../styles'
+import { CloseIcon, ModalNavigator, ModalStack } from '../../components'
+import { FamiliarContex } from '../../context'
+import { FAMILIAR_ACTIONS } from '../../reducers'
+import { getAllFamiliaresByUser } from '../../services'
 import { FamiliaresModal } from '../ModaisView'
+import { getData } from '../../utils'
+
+import { Familiares } from './Familiares'
 
 const FamiliaresStackScreen = (props) => {
 
-    const { userState } = useContext(UserContext)
+    const { familiarState, dispatch } = useContext(FamiliarContex)
+
+    useEffect(() => {
+        getData('userData').then((cache) => {
+            getAllFamiliaresByUser(cache.id, cache.token).then(({ data }) => {
+                dispatch({
+                    type: FAMILIAR_ACTIONS.GET_ALL_FAMILIAR,
+                    payload: data
+                })
+
+            })
+        })
+    }, [])
 
     return (
         <ModalNavigator>
 
             {
 
-                userState.user.familiares.length > 0
+                familiarState.familiares.length > 0
                     ?
                     <ModalStack.Screen
                         name="Familiares"
                         component={Familiares}
+                        options={{
+                            headerTransparent: true
+                        }}
                     />
                     :
                     <>
@@ -36,19 +54,13 @@ const FamiliaresStackScreen = (props) => {
                         <ModalStack.Screen
                             name="Familiares"
                             component={Familiares}
+                            options={{
+                                headerTransparent: true
+                            }}
                         />
                     </>
             }
         </ModalNavigator>
-    )
-}
-
-const Familiares = (props) => {
-
-    return (
-        <SafeAreaView>
-            <Text>Familiares</Text>
-        </SafeAreaView>
     )
 }
 

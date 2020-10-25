@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import { Animated, Image, View } from 'react-native'
 import { Picker } from '@react-native-community/picker'
 
@@ -10,15 +10,25 @@ import {
     TextButton,
     TitleText
 } from '../../../components'
+import {
+    contatoMask,
+    familiarNomeContatoValidation,
+    familiarParentescoValidation,
+    getData,
+    onlyStringMask
+} from '../../../utils'
 import { Base, Widths } from '../../../styles'
-import { contatoMask, onlyStringMask } from '../../../utils'
 import { GRAU_FAMILIAR } from '../../../constants'
+import { postFamiliar } from '../../../services'
+import { styles } from './styles'
+import { FamiliarContex } from '../../../context'
+import { FAMILIAR_ACTIONS } from '../../../reducers'
 
 import FamilyImage from '../../../assets/img/familyIlustrationModal.png'
 
-import { styles } from './styles'
-
 const FamiliaresModal = (props) => {
+
+    const { dispatch } = useContext(FamiliarContex)
 
     const [nome, setNome] = useState('')
     const [contato, setContato] = useState('')
@@ -34,14 +44,51 @@ const FamiliaresModal = (props) => {
 
 
     const handleNextStep = () => {
-        scrollRef.current.scrollTo({ x: xPos + 328, y: 0, animated: true })
-        setXPos(xPos + 328)
+        const [test, errors] = familiarNomeContatoValidation(nome, contato)
+
+        if (test) {
+            scrollRef.current.scrollTo({ x: xPos + 328, y: 0, animated: true })
+            setXPos(xPos + 328)
+        }
+        else {
+            alert(errors.toString())
+        }
+
     }
 
     const handleBackStep = () => {
         if (xPos > 0) {
             scrollRef.current.scrollTo({ x: xPos - 328, y: 0, animated: true })
             setXPos(xPos - 328)
+        }
+    }
+
+    const handleCadastrar = () => {
+
+        const [test, errros] = familiarParentescoValidation(parentesco, descParentesco)
+
+        if (test) {
+            const familiar = {
+                nome,
+                parentesco,
+                descParentesco,
+                numero: contato
+            }
+
+            getData('userData').then((cache) => {
+                postFamiliar(familiar, cache.id, cache.token).then(({ data }) => {
+                    
+                    dispatch({
+                        type: FAMILIAR_ACTIONS.ADD_FAMILIAR,
+                        payload: data
+                    })
+
+                    props.navigation.navigate('Familiares')
+                })
+            })
+        }
+        else {
+            alert(errros.toString())
         }
     }
 
@@ -83,7 +130,7 @@ const FamiliaresModal = (props) => {
                             onSubmitEditing={() => contatoInputRef.current.focus()}
                             placeholder="Nome Completo"
                             returnKeyType="next"
-                            style={styles.input}
+                            style={{ ...styles.input, marginTop: 12 }}
                             value={nome}
                         />
                         <SimpleInput
@@ -151,13 +198,16 @@ const FamiliaresModal = (props) => {
                                 value={descParentesco}
                             />
                         }
-                        <TextButton                            
+                        <TextButton
                             onPress={() => handleBackStep()}
                             style={styles.simpleButton}
                             title="Voltar"
                         />
                         <View style={styles.buttonContainer}>
-                            <PrimaryButton title="Cadastrar" />
+                            <PrimaryButton
+                                onPress={() => handleCadastrar()}
+                                title="Cadastrar"
+                            />
                         </View>
                     </View>
 

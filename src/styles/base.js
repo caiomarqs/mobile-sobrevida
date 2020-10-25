@@ -67,6 +67,14 @@ const Base = {
         borderColor: Colors.cinza200,
         paddingHorizontal: 8,
         borderRadius: 4
+    },
+    contentEditableButton: {
+        display: 'flex',
+        flexDirection: 'row',
+        borderRadius: 8,
+        paddingHorizontal: 16,
+        paddingVertical: 16,
+        backgroundColor: Colors.cinza000
     }
 }
 
