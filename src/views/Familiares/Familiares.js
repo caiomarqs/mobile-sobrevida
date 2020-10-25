@@ -1,28 +1,34 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { View, SafeAreaView } from 'react-native'
 
-import { ContentEditableButton, CaptionText, Modal, TitleText, OutLineButton } from '../../components'
-import { getAllFamiliaresByUser, deleteFamiliar } from '../../services'
+import {
+    ContentEditableButton,
+    CaptionText,
+    Modal,
+    OutLineButton,
+    TextButton,
+    TitleText
+} from '../../components'
+import { deleteFamiliar } from '../../services'
 import { getData } from '../../utils'
 import { GRAU_FAMILIAR } from '../../constants'
-
-import { styles } from './styles'
 import { FamiliarContex } from '../../context'
 import { FAMILIAR_ACTIONS } from '../../reducers'
+
+import { ModalHandleFamiliar } from './ModalHandleFamiliar'
+import { styles } from './styles'
 
 const Familiares = (props) => {
 
 
     const { familiarState, dispatch } = useContext(FamiliarContex)
 
-    const [selectedFamiliar, setSelectedFamiliar] = useState(0)
+    const [idFamiliar, setIdFamiliar] = useState(0)
+    const [selectedFamiliar, setSelectedFamiliar] = useState({})
     const [modal, setModal] = useState(false)
+    const [modalEdit, setModalEdit] = useState(false)
+    const [modalAdd, setModalAdd] = useState(false)
 
-    useEffect(() => {
-        getData('userData').then((cache) => {
-
-        })
-    }, [])
 
     const renderDescFamilar = (familiar) => {
         const grau = GRAU_FAMILIAR.filter(g => (
@@ -40,23 +46,25 @@ const Familiares = (props) => {
         )
     }
 
-    const handleOpenModal = (idFamiliar) => {
-        setSelectedFamiliar(idFamiliar)
+    const handleOpenModal = (idFamiliar, familiar) => {
+        setIdFamiliar(idFamiliar)
+        setSelectedFamiliar(familiar)
         setModal(true)
     }
 
     const handleExcluirDepoimento = () => {
         getData('userData').then((cache) => {
-            deleteFamiliar(selectedFamiliar, cache.token).then(_ => {
+            deleteFamiliar(idFamiliar, cache.token).then(_ => {
                 dispatch({
                     type: FAMILIAR_ACTIONS.DELETE_FAMILIAR,
-                    payload: selectedFamiliar
+                    payload: idFamiliar
                 })
 
                 if (familiarState.familiares.length === 1) {
                     props.navigation.navigate('Home')
                 }
                 else {
+                    setModal(false)
                     props.navigation.navigate('Familiares')
                 }
             })
@@ -72,7 +80,7 @@ const Familiares = (props) => {
                             <ContentEditableButton
                                 key={i}
                                 title={`${familiar.nome} ${familiar.sobreNome}`}
-                                onPress={() => handleOpenModal(familiar.cod)}
+                                onPress={() => handleOpenModal(familiar.cod, familiar)}
                                 style={styles.familiarContainer}
                             >
                                 {
@@ -82,6 +90,16 @@ const Familiares = (props) => {
                         )
                     })
                 }
+                {
+                    familiarState.familiares.length < 3
+                    &&
+                    <TextButton
+                        onPress={() => setModalAdd(true)}
+                        style={styles.addButton}
+                        title="Adicionar Familar"
+                    />
+                }
+
             </SafeAreaView>
 
             <Modal
@@ -97,7 +115,10 @@ const Familiares = (props) => {
 
                     <View style={styles.modalButtonsContainer}>
                         <OutLineButton
-                            onPress={() => { }}
+                            onPress={() => {
+                                setModal(false)
+                                setModalEdit(true)
+                            }}
                             style={styles.modalOutLineButton1}
                             title="Editar"
                         />
@@ -109,6 +130,29 @@ const Familiares = (props) => {
                     </View>
                 </View>
             </Modal>
+
+            {
+                Object.keys(selectedFamiliar).length > 0
+                &&
+                <ModalHandleFamiliar
+                    close={() => setModalEdit(false)}
+                    familiar={selectedFamiliar}
+                    naviagtion={props.navigation}
+                    show={modalEdit}
+                />
+            }
+
+
+            {
+                familiarState.familiares.length < 3
+                &&
+                <ModalHandleFamiliar
+                    naviagtion={props.navigation}
+                    close={() => setModalAdd(false)}
+                    show={modalAdd}
+                />
+            }
+
         </>
     )
 }

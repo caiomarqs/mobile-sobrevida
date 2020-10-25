@@ -38,6 +38,31 @@ const postFamiliar = async (familiar, idUser, token) => {
     })
 }
 
+
+const putFamiliar = async (familiar, idUser, token) => {
+    return axios({
+        baseURL: REACT_APP_SERVER_URL,
+        method: 'PUT',
+        url: `/familiar/${familiar.cod}`,
+        data: {
+            nome: familiar.nome.substr(0, familiar.nome.indexOf(' ')),
+            sobreNome: familiar.nome.substr(familiar.nome.indexOf(' ') + 1),
+            parentesco: familiar.parentesco,
+            descParentesco: familiar.descParentesco === undefined ? '' : familiar.descParentesco,
+            contatos: [
+                {
+                    numero: familiar.numero
+                }
+            ],
+            codDoador: idUser
+        },
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        }
+    })
+}
+
 const postFamiliarContato = async (idFamiliar, contato, token) => {
     return axios({
         baseURL: REACT_APP_SERVER_URL,
@@ -94,6 +119,7 @@ const deleteFamiliar = async (idFamiliar, token) => {
 }
 export {
     postFamiliar,
+    putFamiliar,
     deleteFamiliar,
     getAllFamiliaresByUser,
     putFamiliarContato,

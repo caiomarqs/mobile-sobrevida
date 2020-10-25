@@ -1,5 +1,7 @@
 import { StyleSheet } from 'react-native'
 
+import { Widths } from '../../styles'
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -29,6 +31,29 @@ const styles = StyleSheet.create({
     modalOutLineButton2: {
         flex: 1,
         marginLeft: 6
+    },
+    modalScroll: {
+        flex: 1,
+        marginTop: 60
+    },
+    modalSlide: {
+        flex: 1,
+        width: Widths.DEVICE_WIDTH - 32
+    },
+    input: {
+        marginBottom: 12
+    },
+    buttonContainer: {
+        flex: 1,
+        justifyContent: 'flex-end',
+        paddingBottom: 16
+    },
+    simpleButton: {
+        marginVertical: 12
+    },
+    addButton:{
+        marginVertical: 16,
+        alignSelf: 'center'
     }
 })
 
