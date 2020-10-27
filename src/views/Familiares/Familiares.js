@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { View, SafeAreaView } from 'react-native'
 
 import {
@@ -9,7 +9,7 @@ import {
     TextButton,
     TitleText
 } from '../../components'
-import { deleteFamiliar } from '../../services'
+import { deleteFamiliar, getAllFamiliaresByUser } from '../../services'
 import { getData } from '../../utils'
 import { GRAU_FAMILIAR } from '../../constants'
 import { FamiliarContex } from '../../context'
@@ -29,6 +29,18 @@ const Familiares = (props) => {
     const [modalEdit, setModalEdit] = useState(false)
     const [modalAdd, setModalAdd] = useState(false)
 
+
+    const reloadData = () => {
+        getData('userData').then((cache) => {
+            getAllFamiliaresByUser(cache.id, cache.token).then(({ data }) => {
+                dispatch({
+                    type: FAMILIAR_ACTIONS.GET_ALL_FAMILIAR,
+                    payload: data
+                })
+
+            })
+        })
+    }
 
     const renderDescFamilar = (familiar) => {
         const grau = GRAU_FAMILIAR.filter(g => (
@@ -66,7 +78,8 @@ const Familiares = (props) => {
                 else {
                     setModal(false)
                     props.navigation.navigate('Familiares')
-                }
+                    reloadData()
+                } 
             })
         })
     }
@@ -96,7 +109,7 @@ const Familiares = (props) => {
                     <TextButton
                         onPress={() => setModalAdd(true)}
                         style={styles.addButton}
-                        title="Adicionar Familar"
+                        title="Adicionar Familiar"
                     />
                 }
 

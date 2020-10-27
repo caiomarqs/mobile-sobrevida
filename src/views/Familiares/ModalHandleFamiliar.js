@@ -25,6 +25,7 @@ import { FAMILIAR_ACTIONS } from '../../reducers'
 
 import { styles } from './styles'
 
+const SLIDE_WIDTH = Widths.DEVICE_WIDTH - 32
 
 const ModalHandleFamiliar = ({ naviagtion, show, close, familiar = {} }) => {
 
@@ -50,13 +51,19 @@ const ModalHandleFamiliar = ({ naviagtion, show, close, familiar = {} }) => {
         }
     }, [])
 
+    const clearState = () => {
+        setNome('')
+        setContato('')
+        setParentesco(0)
+        setDescParentesco('')
+    }
 
     const handleNextStep = () => {
         const [test, errors] = familiarNomeContatoValidation(nome, contato)
 
         if (test) {
-            scrollRef.current.scrollTo({ x: xPos + 328, y: 0, animated: true })
-            setXPos(xPos + 328)
+            scrollRef.current.scrollTo({ x: xPos + SLIDE_WIDTH, y: 0, animated: true })
+            setXPos(xPos + SLIDE_WIDTH)
         }
         else {
             alert(errors.toString())
@@ -66,8 +73,8 @@ const ModalHandleFamiliar = ({ naviagtion, show, close, familiar = {} }) => {
 
     const handleBackStep = () => {
         if (xPos > 0) {
-            scrollRef.current.scrollTo({ x: xPos - 328, y: 0, animated: true })
-            setXPos(xPos - 328)
+            scrollRef.current.scrollTo({ x: xPos - SLIDE_WIDTH, y: 0, animated: true })
+            setXPos(xPos - SLIDE_WIDTH)
         }
     }
 
@@ -95,6 +102,8 @@ const ModalHandleFamiliar = ({ naviagtion, show, close, familiar = {} }) => {
                     close()
                 })
             })
+
+            clearState()
         }
         else {
             alert(errros.toString())
@@ -129,6 +138,8 @@ const ModalHandleFamiliar = ({ naviagtion, show, close, familiar = {} }) => {
 
                 })
             })
+
+            clearState()
         }
         else {
             alert(errros.toString())
