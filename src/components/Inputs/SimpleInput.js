@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { TextInput, KeyboardTypeOptions } from 'react-native'
+import React from 'react'
+import { TextInput } from 'react-native'
 import { Base } from '../../styles'
 
 const SimpleInput = ({
